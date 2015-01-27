@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-asp.netmvc5-20150122103222.mdf;Initial Catalog=aspnet-asp.netmvc5-20150122103222;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nicholas\\Documents\\GitHub\\CIS420\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="VaccineDBContext-Web.config Connection String" description="VaccineDBContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\Vaccines3.mdf;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nicholas\\Documents\\GitHub\\CIS420\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='VaccineDBContext']/@connectionString" />
+  </parameter>
+  <parameter name="VaccineDBContext_DatabasePublish-Web.config Connection String" description="VaccineDBContext_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="VaccineDBContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nicholas\\Documents\\GitHub\\CIS420\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='VaccineDBContext_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

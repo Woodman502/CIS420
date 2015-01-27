@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="cis420" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Nicholas\\Documents\\GitHub\\CIS420\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Nicholas\\Documents\\GitHub\\CIS420\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-asp.netmvc5-20150122103222.mdf;Initial Catalog=aspnet-asp.netmvc5-20150122103222;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nicholas\\Documents\\GitHub\\CIS420\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="VaccineDBContext-Web.config Connection String" description="" value="Data Source=tcp:qzs4uebaoi.database.windows.net,1433;Initial Catalog=cis420662;User Id=cis420@qzs4uebaoi;Password=JuniorAnalysts@$" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nicholas\\Documents\\GitHub\\CIS420\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='VaccineDBContext']/@connectionString" />
+  </parameter>
+</parameters>
