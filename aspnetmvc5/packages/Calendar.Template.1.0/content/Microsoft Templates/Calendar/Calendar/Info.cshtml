@@ -1,0 +1,46 @@
+﻿@{
+    if (!UrlData.Any()) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    int calId = UrlData[0].AsInt();
+
+    // View information about the calendar
+    var calendar = Calendar.GetUserCalendar(WebSecurity.CurrentUserId, calId);
+
+    if (calendar == null) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    RequestData.SetValue("InfoPaneTitle", "Calendar: "+ calendar.Name);
+}
+<fieldset>
+    <table class="info">
+        <tr>
+            <td>Calendar Name</td>
+            <td>@calendar.Name</td>
+        </tr>
+        <tr>
+            <td>Calendar Color</td>
+            <td>@calendar.Color <span class="swatch width100 rounded-top rounded-bottom" style="background-color: @(calendar.Color); border-color: @(ColorHelper.GetBorderFromHtml(calendar.Color));">&nbsp;</span></td>
+        </tr>
+        <tr>
+            <td>Created By</td>
+            <td>@UserHelper.GetUser(calendar.Creator).Email</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="center">
+                 <a href="@Href("~/Calendar/Edit", calendar.CalendarId)">Edit</a>  
+                 @if (calendar.Permissions == (int)Permission.Own) {
+                    <text> -
+                     <a href="@Href("~/Calendar/Delete", calendar.CalendarId)">Delete</a> -
+                     <a href="@Href("~/Calendar/Share/View", calendar.CalendarId)">Share</a>
+                    </text>
+                }
+                - <a href="@Href("~/Download", calendar.CalendarId, calendar.Guid)">Download</a>
+            </td>
+        </tr>
+    </table>
+</fieldset>

@@ -1,0 +1,14 @@
+﻿@{
+    var calendarGroups = Calendar.GetCalendarGroups(WebSecurity.CurrentUserId);
+
+    dynamic sharedCalendars = null;
+    if (calendarGroups.ContainsKey("Shared")) {
+        sharedCalendars = calendarGroups["Shared"];
+    }
+}
+
+@RenderPage(Themes.GetResourcePath("Sections", "MyCalendars.cshtml"), calendarGroups["Mine"])
+        
+@RenderPage(Themes.GetResourcePath("Sections", "SharedCalendars.cshtml"), sharedCalendars)
+        
+@RenderPage(Themes.GetResourcePath("Sections", "ThemeList.cshtml"))

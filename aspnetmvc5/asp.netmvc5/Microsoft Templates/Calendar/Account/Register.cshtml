@@ -1,0 +1,116 @@
+﻿@{
+    Page.Title = "Account Creation";
+
+    if (IsPost) {
+        var name = Request["name"];
+        if (name.IsEmpty()) {
+            ModelState.AddError("name", "You must specify a display name.");
+        }
+
+        var email = Request["email"];
+        if (email.IsEmpty()) {
+            ModelState.AddError("email", "You must specify an email address.");
+        }
+
+        var timeZoneId = Request["timezone"];
+
+        if (timeZoneId.IsEmpty()) {
+            ModelState.AddError("timezone", "You must specify a time zone");
+        }
+
+        // only accept the timezone if it is in our list
+        try {
+            TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+        } catch {
+            ModelState.AddError("timezone", "You must specify a valid time zone");
+        }
+
+        var password = Request["password"];
+        var confirmPassword = Request["confirmPassword"];
+
+        if (password.IsEmpty()) {
+            ModelState.AddError("password", "You must specify a password.");
+        }
+
+        if (confirmPassword.IsEmpty()) {
+            ModelState.AddError("confirmPassword", "You must specify a confirm password.");
+        }
+
+        if (password != confirmPassword) {
+            ModelState.AddFormError("The new password and confirmation password do not match.");
+        }
+
+        if (ModelState.IsValid) {
+            if (UserHelper.UserExists(email)) {
+                ModelState.AddFormError("Email address is already in use.");
+            } else {
+                // This and the contents of the try catch should probably be done
+                // in a transaction. What happens if we add a user, but membership
+                // isn't cool with it?
+                var userId = UserHelper.AddUser(name, email, timeZoneId);
+
+                Calendar.CreateCalendar(userId);
+
+                // Create and associate a new entry in the membership database.
+                // If successful, continue processing the request
+                try {
+                    WebSecurity.CreateAccount(email, password);
+                    WebSecurity.Login(email, password);
+                    // It seems like there should be a "congratulations on registering"
+                    // page that would come in here.
+
+                    Response.Redirect("~/");
+                } catch (System.Web.Security.MembershipCreateUserException e) {
+                    ModelState.AddFormError(e.ToString());
+                }
+            }
+        }
+    }
+}
+<p>
+    Use the form below to create a new account. 
+</p>
+@Html.ValidationSummary()
+<form method="post" action="" id="accountForm">
+    <div>
+        <table>
+            <tr>
+                <td><label for="name">Display Name</label></td>
+                <td>
+                    @Html.TextBox("name")
+                </td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td>
+                    @Html.TextBox("email")
+                </td>
+            </tr>
+            <tr>
+                <td><label for="timezone">TimeZone</label></td>
+                <td>
+                    <select id="timezone" name="timezone">
+                        @foreach (var timeZone in TimeZoneInfo.GetSystemTimeZones()) {
+                            <option value="@timeZone.Id">@timeZone.DisplayName</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td>
+                    @Html.Password("password")
+                </td>
+            </tr>
+            <tr>
+                <td><label for="confirmPassword">Confirm password</label></td>
+                <td>
+                    @Html.Password("confirmPassword")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" id="submit"><input type="submit" value="Register" /></td>
+            </tr>
+        </table>
+    </div>
+</form>

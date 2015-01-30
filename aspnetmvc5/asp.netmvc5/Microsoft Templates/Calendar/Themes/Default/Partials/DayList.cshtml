@@ -1,0 +1,21 @@
+﻿@{
+    var events = PageData[0];
+    var showTime = PageData[1];
+}
+<ul>
+    @foreach (var e in events) {
+        if (e.AllDay) {
+            <li class="calendar-name rounded-top rounded-bottom" style="background-color: @(e.Color); border-color: @(ColorHelper.GetBorderFromHtml(e.Color));">
+                <a href="@Href("~/Event/Info", e.Id)" title="Event Info">@e.Name</a>
+            </li>
+        } else {
+            <li>
+                @if (showTime != null && (bool)showTime) {
+                <label>@Time.UtcToLocal(e.Start).ToString("t") - @Time.UtcToLocal(e.End).ToString("t")</label> 
+                }
+                <span class="swatch rounded-top rounded-bottom" style="background-color: @(e.Color); border-color: @(ColorHelper.GetBorderFromHtml(e.Color));">&nbsp;</span>
+                <span><a href="@Href("~/Event/Info", e.Id)" title="Event Info">@e.Name</a></span>
+            </li>
+        }
+    }
+</ul>

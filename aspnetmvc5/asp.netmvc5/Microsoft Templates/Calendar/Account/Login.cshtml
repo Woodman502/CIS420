@@ -1,0 +1,59 @@
+﻿@{
+    Page.Title = "Login";
+
+    if (IsPost) {
+        var email = Request["email"];
+        if (email.IsEmpty()) {
+            ModelState.AddError("email", "You must specify an email address.");
+        }
+
+        var password = Request["password"];
+        if (password.IsEmpty()) {
+            ModelState.AddError("password", "You must specify a password.");
+        }
+
+        if (ModelState.IsValid) {
+            var rememberMe = Request["rememberMe"].AsBool();
+            if (WebSecurity.Login(email, password, rememberMe)) {                            
+                string returnUrl = Request["returnUrl"];		
+                if (!returnUrl.IsEmpty()) {
+                    Context.RedirectLocal(returnUrl);
+                } else {
+                    Response.Redirect("~/");
+                }
+            } else {
+                ModelState.AddFormError("The email or password provided is incorrect.");
+            }
+        }
+    }
+}
+<p>
+    Please enter your email and password below. If you don't have an account,
+    please <a href="@Href("Register")">Register</a>.
+</p>
+@Html.ValidationSummary()
+<form method="post" action="" id="accountForm">
+    <div>
+        <table>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td>
+                    @Html.TextBox("email")
+                </td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td>
+                    @Html.Password("password")
+                </td>
+            </tr>
+            <tr>
+                <td><label for="rememberMe">Remember me?</label></td>
+                <td>@Html.CheckBox("rememberMe")</td>
+            </tr>
+            <tr>
+                <td colspan="2" id="submit"><input type="submit" value="Login" /></td>
+            </tr>
+        </table>
+    </div>
+</form>

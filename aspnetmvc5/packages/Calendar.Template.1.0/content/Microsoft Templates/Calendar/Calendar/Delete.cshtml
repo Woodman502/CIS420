@@ -1,0 +1,46 @@
+﻿@{
+    if (!UrlData.Any()) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    int calId = UrlData[0].AsInt();
+
+    var calendar = Calendar.GetUserCalendar(WebSecurity.CurrentUserId, calId);
+
+    if (calendar == null) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    if (calendar.Permissions < (int)Permission.Own) {
+        RequestData.SetValue("InfoPaneTitle", "No Permissions to Delete Calendar " + calId);
+        return;
+    }
+
+    RequestData.SetValue("InfoPaneTitle", "Delete Calendar: " + calendar.Name);
+
+    // We have confirmed that we want to delete
+    if (IsPost) {
+        var numCalendars = Calendar.GetUserCalendars(WebSecurity.CurrentUserId).Count;
+        if (numCalendars <= 1) {
+            ModelState.AddFormError("You can't delete your only calendar");
+        }
+
+        if (ModelState.IsValid) {
+            Calendar.DeleteCalendar(calId);
+            Response.Redirect("~/");
+        }
+    }
+}
+<div class="confirm">
+    <div class="message center">
+        Are you sure that you want to delete the calendar "@calendar.Name"?<br />
+        This will delete all the events that exist on the calendar.
+    </div>
+    <form method="post" action="">
+        <div class="actions center">
+            <input type="submit" value="Confirm" />
+        </div>
+    </form>
+</div>

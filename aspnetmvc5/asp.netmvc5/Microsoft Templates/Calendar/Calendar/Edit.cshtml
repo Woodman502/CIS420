@@ -1,0 +1,16 @@
+﻿@{
+    if (!UrlData.Any()) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    int calendarId = UrlData[0].AsInt();
+
+    var calObj = new {   
+        CalendarId = calendarId,
+        Name = Request["name"],
+        Color = Request["color"],
+    };
+
+    @RenderPage(Themes.GetResourcePath("Partials", "CalendarForm.cshtml"), calObj);
+}

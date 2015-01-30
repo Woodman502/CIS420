@@ -1,0 +1,69 @@
+﻿@{
+    // The user we are going to share with
+    int userId = UrlData[1].AsInt();
+
+    // The user object we are going to share with
+    var user = UserHelper.GetUser(userId);
+
+    var calendar = Page.Calendar;
+
+    if (user == null) {
+        RequestData.SetValue("InfoPaneTitle", "No User Exists by that Name");
+    } else if (user.Email == UserHelper.CurrentUser.Email) {
+        ModelState.AddError("username", "You can't modify your own share settings.");
+    }
+
+    // We need to make sure that the user already has some sort of permissions on this calendar
+    var userCalendarInfo = Calendar.GetUserCalendar(userId, calendar.CalendarId);
+    if (userCalendarInfo == null) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar User Pair");
+        return;
+    }
+
+    RequestData.SetValue("InfoPaneTitle", "Editing User '" + user.Email + "' for Calendar '" + userCalendarInfo.Name + "'");
+
+    if (IsPost) {
+        // We are changing the permissions. Special case is if
+        // permission is 0, that means remove them. Default to -1
+        // so it doesn't count as a 0 (no permission)
+        Permission? permission = Request["permission"].As<Permission?>();
+
+        if (!permission.HasValue) {
+            ModelState.AddError("permission", "You must specify a valid permission level");
+        }
+
+        if (ModelState.IsValid) {
+            Sharing.EditShareCalendar(calendar.CalendarId, WebSecurity.GetUserId(user.Email), permission.Value);
+            Response.Redirect("~/Calendar/Share/View/" + calendar.CalendarId);
+        }
+    }
+}
+@Html.ValidationSummary()
+<form method="post" action="">
+    <table class="info">
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Permission Level</th>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <span style="margin-right: 10px;">Add A User:</span>
+                    <input type="text" name="username" value="@user.Email" />
+                </label>
+            </td>
+            <td>
+                <select name="permission">
+                    @foreach (var level in Enum.GetValues(typeof(Permission))) {
+                        <option value="@((int)level)" @((int)level == userCalendarInfo.Permissions ? " selected=\"selected\"" : "")>@level</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="center" colspan="2">
+                <input type="submit" value="Save" />
+            </td>
+        </tr>
+    </table>
+</form>

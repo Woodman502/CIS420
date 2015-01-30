@@ -1,0 +1,13 @@
+﻿@{
+    if (UrlData.Any()) {
+        // We have set a theme
+        string theme = UrlData[0];
+
+        var cookie = new HttpCookie("CalendarTheme");
+        cookie.Value = theme;
+        cookie.Expires = DateTime.Now.AddMonths(2);
+        Response.Cookies.Add(cookie);
+    }
+
+    Response.Redirect("~/");
+}

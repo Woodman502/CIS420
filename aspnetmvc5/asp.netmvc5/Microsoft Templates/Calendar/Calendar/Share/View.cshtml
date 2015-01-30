@@ -1,0 +1,76 @@
+﻿@{
+    var calendar = Page.Calendar;
+    RequestData.SetValue("InfoPaneTitle", "Manage Sharing for: " + calendar.Name);
+    var users = Sharing.GetUsersWithAccess(calendar.CalendarId);
+
+    if (IsPost) {
+        // We are adding a user
+        var email = Request["email"];
+        if (email.IsEmpty()) {
+            ModelState.AddError("email", "You must specify a user name.");
+        } else if (!UserHelper.UserExists(email)) {
+            // check that the user exist
+            ModelState.AddError("email", "No user exists with that username.");
+        } else if (email == UserHelper.CurrentUser.Email) {
+            ModelState.AddError("email", "You can't share a calendar with yourself.");
+        }
+
+        foreach (var user in users) {
+            if (user.Email == email) {
+                ModelState.AddError("email", "That user is already able to access the calendar");
+            }
+        }
+
+        var permission = Request["permission"];
+        Permission result = Permission.View;
+
+        if (permission.IsEmpty()) {
+             ModelState.AddError("permission", "You must specify a permission level");
+        } else if (!Enum.TryParse<Permission>(permission, out result)) {
+            // validate the specified permission level
+            ModelState.AddError("permission", "You must specify a valid permission level");
+        }
+
+        if (ModelState.IsValid) {
+            Sharing.ShareCalendar(calendar.CalendarId, WebSecurity.GetUserId(email), result);
+            Response.Redirect("~/Calendar/Share/View/"+calendar.CalendarId);
+        }
+    }
+}
+@Html.ValidationSummary()
+<form method="post" action="">
+    <table class="info">
+        <tr>
+            <th scope="col">Email</th>
+            <th scope="col">Permission Level</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <span style="margin-right: 1em">Add A User:</span>
+                    <input type="text" name="email" value="" />
+                </label>
+            </td>
+            <td>
+                <select name="permission">
+                    @foreach (var level in Enum.GetValues(typeof(Permission))) {
+                        <option value="@((int)level)">@level</option>
+                    }
+                </select>
+            </td>
+            <td><input type="submit" value="Add" /></td>
+        </tr>
+        @foreach (var user in users) {
+            // Don't show the user who is sharing. This keeps them from removing themselves
+            if (user.Email == Page.User.Email) {
+                continue;
+            }
+        <tr>
+            <td>@user.Email</td>
+            <td>@((Permission)user.Permissions)</td>
+            <td> <a href="@Href("~/Calendar/Share/Edit", calendar.CalendarId, user.Id)" title="Edit Calendar">Change Permission</a></td>
+        </tr>
+        }
+    </table>
+</form>

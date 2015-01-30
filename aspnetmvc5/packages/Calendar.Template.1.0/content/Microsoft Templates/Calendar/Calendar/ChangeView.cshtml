@@ -1,0 +1,13 @@
+﻿@{
+    if (UrlData.Any()) {
+        // We have set a view
+        string view = UrlData[0];
+
+        var cookie = new HttpCookie("CalendarView");
+        cookie.Value = view;
+        cookie.Expires = DateTime.Now.AddMonths(2);
+        Response.Cookies.Add(cookie);
+    }
+
+    Response.Redirect("~/");
+}

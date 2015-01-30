@@ -1,0 +1,14 @@
+﻿@{
+    var eventObj = new {   
+        Name = Request["name"],
+        Description = Request["description"],
+        AllDay = Request["allDay"],
+        StartDate = Request["sDate"],
+        StartTime = Request["sTime"],
+        EndTime = Request["eTime"],
+        Location = Request["location"],
+        CalendarId = Request["calendar"]
+    };
+
+    @RenderPage(Themes.GetResourcePath("Partials", "EventForm.cshtml"), eventObj);
+}

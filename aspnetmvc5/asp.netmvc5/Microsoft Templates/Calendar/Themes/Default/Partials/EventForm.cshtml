@@ -1,0 +1,131 @@
+﻿@{
+    int? eventId = Page.EventId;
+
+    // Gross variable that stores the current event (IF we are on an edit page)
+    dynamic eventInfo = null;
+    var calendars = Calendar.GetUserCalendars(WebSecurity.CurrentUserId, Permission.Edit);
+
+    // These are the times to use for the form.
+    DateTime start;
+    DateTime end;
+
+    // We are editing a page
+    if (eventId.HasValue) {
+        // Check if the event id is tied to the current user
+        eventInfo = Event.GetUserEvent(WebSecurity.CurrentUserId, eventId.Value);
+
+        if (eventInfo == null) {
+            RequestData.SetValue("InfoPaneTitle", "Invalid Event Id");
+            return;
+        }
+        RequestData.SetValue("InfoPaneTitle", "Edit Event: " + eventInfo.Name);
+
+        start = Time.UtcToLocal(eventInfo.Start);
+        end = Time.UtcToLocal(eventInfo.End);
+    } else {
+        RequestData.SetValue("InfoPaneTitle", "Add an Event");
+
+        start = Time.NowInLocal;
+        var halfHour = TimeSpan.FromMinutes(30);
+        end = start.Add(halfHour);
+    }
+
+    if (IsPost) { 
+        var name = Page.Name;
+        if (String.IsNullOrEmpty(name)) {
+            ModelState.AddError("name", "You must specify an event name.");
+        }
+
+        var description = Page.Description;
+
+        var allDay = (Page.AllDay == "on") ? true : false;
+
+        start = Time.NowInLocal;
+        end = Time.NowInLocal;
+
+        // Validate the start and end date/times.
+
+        if (!DateTime.TryParse(Page.StartDate + " " + Page.StartTime, out start) ||
+            !DateTime.TryParse(Page.StartDate + " " + Page.EndTime, out end)) {
+            ModelState.AddFormError("One of the date / time strings were unreadable.");
+        }
+
+        var location = Page.Location;
+        if (!String.IsNullOrEmpty(location) && (location.Length > 100)) {
+            ModelState.AddError("location", "If you specify a location, it must be less than or equal to 100 chars.");
+        }
+
+        var calendarId = Int32.Parse(Page.CalendarId);
+        // Find out if we can make an event on the given calendars
+        bool canMakeEvent = false;
+        var editableCalendars = Calendar.GetUserCalendars(WebSecurity.CurrentUserId, Permission.Edit);
+
+        foreach (var calendar in editableCalendars) {
+            if (calendar.CalendarId == calendarId) {
+                canMakeEvent = true;
+                break;
+            }
+        }
+
+        if (!canMakeEvent) {
+            ModelState.AddError("calendar", "You can't add events to the specified calendar");
+        }
+
+        if (ModelState.IsValid) {
+            if (eventId.HasValue) {
+                Event.EditEvent(eventId.Value, calendarId, name, description, location, Time.LocalToUtc(start), Time.LocalToUtc(end), Convert.ToBoolean(allDay));
+            } else {
+                eventId = Event.AddEvent(WebSecurity.CurrentUserId, calendarId, name, description, location, Time.LocalToUtc(start), Time.LocalToUtc(end), Convert.ToBoolean(allDay));
+            }
+            Response.Redirect("~/Event/Info/" + eventId);
+        }
+    }
+}
+@Html.ValidationSummary()
+<form method="post" action="">
+    <table class="info">
+        <tr>
+            <td><label for="name">Event Name</label></td>
+            <td><input type="text" id="name" name="name" value="@(eventId.HasValue ? eventInfo.Name : "")" /></td>
+        </tr>
+        <tr>
+            <td><label for="description">Event Description</label></td>
+            <td><textarea id="description" name="description" rows="3" cols="15">@(eventId.HasValue ? eventInfo.Description : "")</textarea></td>
+        </tr>
+        <tr>
+            <td><label for="location">Event Location</label></td>
+            <td><input type="text" id="location" name="location" value="@(eventId.HasValue ? eventInfo.Location : "")" /></td>
+        </tr>
+        <tr>
+            <td><label for="allDay">All Day Event</label></td>
+            <td><input type="checkbox" id="allDay" name="allDay" @((eventId.HasValue && eventInfo.AllDay) ? " checked=\"checked\"" : "") /></td>
+        </tr>
+        <tr>
+            <td>Start</td>
+            <td>
+                <label for="sDate">Date:</label> <input type="text" class="datepicker" id="sDate" name="sDate" value="@start.ToString("d")" /> <label for="sTime">Time:</label> <input type="text" id="sTime" name="sTime" value="@start.ToString("t")" />
+            </td>
+        </tr>
+        <tr>
+            <td>End</td>
+            <td>
+                <label for="eTime">Time:</label> <input type="text" id="eTime" name="eTime" value="@end.ToString("t")" />
+            </td>
+        </tr>
+        <tr>
+            <td><label for="calendar">Calendar Name</label></td>
+            <td>
+                <select id="calendar" name="calendar">
+                    @foreach (var calendar in calendars) {
+                        <option style="background-color: @calendar.Color" value="@calendar.CalendarId" @(eventId.HasValue && (calendar.CalendarId == eventInfo.CalendarID) ? " selected=\"selected\"" : "")>
+                            @calendar.Name
+                        </option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="center"><input type="submit" name="submit" value="@(eventId.HasValue ? "Save" : "Create")" /></td>
+        </tr>
+    </table>
+</form>

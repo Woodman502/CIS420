@@ -1,0 +1,16 @@
+﻿@{
+    var myCalendars = PageData[0];
+}
+<div id="myCalendars" class="nav-section rounded-top">
+    <h3 class="rounded-top border-bottom">
+        My Calendars - <a href="@Href("~/Calendar/Add")">Add</a>
+    </h3>
+    <ul>
+        @* Show all of the ones that the user owns first *@
+        @foreach (var calendar in myCalendars) {
+            <li class="calendar-name rounded-top rounded-bottom" style="background-color: @(calendar.Color); border-color: @ColorHelper.GetBorderFromHtml(calendar.Color)">
+                <a href="@Href("~/Calendar/Info", calendar.CalendarId)" title="Calendar Info">@calendar.Name </a>
+            </li>
+        }
+    </ul>
+</div>

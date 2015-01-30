@@ -1,0 +1,24 @@
+﻿@{
+    // Grab the calendar from the id
+    if (!UrlData.Any()) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    int calendarId = UrlData[0].AsInt();
+
+    // Check that the current user "owns" the calendar
+    var calendar = Calendar.GetUserCalendar(WebSecurity.CurrentUserId, calendarId);
+
+    if (calendar == null) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    // If not, redirect to home
+    if (calendar.Permissions < (int)Permission.Own) {
+        Response.Redirect("~/");
+    }
+
+    Page.Calendar = calendar;
+}

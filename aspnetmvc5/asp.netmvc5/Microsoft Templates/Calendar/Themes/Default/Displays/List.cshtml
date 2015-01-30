@@ -1,0 +1,36 @@
+﻿@{
+    var db = UserHelper.DatabaseInstance;
+
+    // The beggining of the local day
+    DateTime startDay = Time.LocalToUtc(Time.NowInLocal.Date);
+
+    var events = db.Query(@"SELECT TOP (30)
+                            e.Id, e.Name, e.AllDay, e.Start, e.[End], cu.Color
+                            FROM Events AS e
+                            JOIN Calendars AS c ON e.CalendarID = c.Id
+                            JOIN CalendarsUsers AS cu ON c.Id = cu.CalendarId
+                            JOIN Users AS u ON cu.UserId = u.Id
+                            WHERE u.Id = @0
+                            AND e.Start >= @1",
+                        WebSecurity.CurrentUserId,
+                        startDay
+                        );
+
+    var dayGroups =
+        from dynamic e in (IEnumerable<object>)events
+        group e by Time.UtcToLocal(e.Start).Date into g
+        orderby g.Key
+        select new { 
+            Date = g.Key, 
+            Events = g.OrderByDescending(e => e.AllDay).ThenBy(e => e.Start)
+        };
+}
+
+@foreach (var g in dayGroups) {
+    <fieldset class="list-day">
+        <legend>@g.Date.ToString("d")</legend>
+        @{
+            @RenderPage(Themes.GetResourcePath("Partials", "DayList.cshtml"), g.Events, true)
+        }
+    </fieldset>
+}

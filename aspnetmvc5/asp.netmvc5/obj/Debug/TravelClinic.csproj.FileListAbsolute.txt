@@ -56,3 +56,7 @@ C:\Users\Nicholas\Documents\Visual Studio 2013\Projects\aspnetmvc5\asp.netmvc5\o
 C:\Users\Nicholas\Documents\Visual Studio 2013\Projects\aspnetmvc5\asp.netmvc5\obj\Debug\asp.netmvc5.Migrations.InitialCreate.resources
 C:\Users\Nicholas\Documents\Visual Studio 2013\Projects\aspnetmvc5\asp.netmvc5\obj\Debug\TravelClinic.csproj.GenerateResource.Cache
 C:\Users\Nicholas\Documents\Visual Studio 2013\Projects\aspnetmvc5\asp.netmvc5\obj\Debug\asp.netmvc5.Migrations.Initial.resources
+C:\Users\Joe Woodcox\Documents\GitHub\CIS420\aspnetmvc5\asp.netmvc5\obj\Debug\TravelClinic.csproj.App.config
+C:\Users\Joe Woodcox\Documents\GitHub\CIS420\aspnetmvc5\asp.netmvc5\obj\Debug\asp.netmvc5.Migrations.InitialCreate.resources
+C:\Users\Joe Woodcox\Documents\GitHub\CIS420\aspnetmvc5\asp.netmvc5\obj\Debug\asp.netmvc5.Migrations.Initial.resources
+C:\Users\Joe Woodcox\Documents\GitHub\CIS420\aspnetmvc5\asp.netmvc5\obj\Debug\TravelClinic.csproj.GenerateResource.Cache

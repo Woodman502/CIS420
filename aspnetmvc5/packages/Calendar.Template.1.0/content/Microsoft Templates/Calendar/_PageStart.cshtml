@@ -1,0 +1,15 @@
+﻿@{
+    var cookie = Request.Cookies.Get("CalendarTheme");
+    string theme = cookie != null ? cookie.Value : "Default";
+
+    Themes.CurrentTheme = theme;
+
+    var user = UserHelper.CurrentUser;
+
+    // If someone is logged in, set the timezone.
+    if (user != null) {
+        Time.LocalTimeZoneId = user.TimeZone;
+    }
+
+    Page.User = user;
+}

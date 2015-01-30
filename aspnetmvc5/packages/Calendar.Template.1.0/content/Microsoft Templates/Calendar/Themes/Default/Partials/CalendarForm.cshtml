@@ -1,0 +1,85 @@
+﻿@{
+    int? calendarId = Page.CalendarId;
+    dynamic calendarInfo = null;
+
+    if (calendarId.HasValue) {
+        // View information about the calendar
+        calendarInfo = Calendar.GetUserCalendar(WebSecurity.CurrentUserId, calendarId.Value);
+        
+        // If the calendar doesn't exist
+        if (calendarInfo == null) {
+            RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+            return;
+        }
+
+        RequestData.SetValue("InfoPaneTitle", "Calendar: " + calendarInfo.Name);
+    }
+
+    if (IsPost) {
+        string name = Page.Name;
+
+        // We may only be updating the color, in which case name == null
+        if (name != null && (name.Length < 4 || name.Length > 15)) {
+            ModelState.AddError("name", "The calendar name must be within 4 and 15 characters.");
+        }
+
+        var color = Page.Color;
+        if (String.IsNullOrEmpty(color)) {
+             ModelState.AddError("color", "You must specify a calendar color.");
+        }
+        else if (!ColorHelper.IsValidColor(color)) {
+            ModelState.AddError("color", "You must specify a brighter / valid color.");
+        }
+
+        if (ModelState.IsValid) {
+            if (calendarId.HasValue) {
+                // Update the calendar color
+                if (name == null) {
+                    Calendar.UpdateCalendarColor(WebSecurity.CurrentUserId, calendarId.Value, color);
+                } else {
+                    // Update the calendar name and color
+                    Calendar.UpdateCalendar(WebSecurity.CurrentUserId, calendarId.Value, name, color);
+                }
+            } else {
+                calendarId = Calendar.CreateCalendar(WebSecurity.CurrentUserId, name, color);
+            }
+            Response.Redirect("~/Calendar/Info/" + calendarId);
+        }
+    }
+}
+
+@Html.ValidationSummary()
+<form method="post" action="">
+    <table class="info">
+        <tr>
+            <td><label for="name">Calendar Name</label></td>
+            <td>
+                @if (calendarId.HasValue) {
+                    if (calendarInfo.Permissions == (int)Permission.Own) {
+                        <input type="text" id="name" name="name" value="@calendarInfo.Name" />
+                    } else {
+                        @calendarInfo.Name
+                    }
+                } else {
+                    <input type="text" id="name" name="name" value="" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <td><label for="jqueryColorField">Calendar Color</label></td>
+            <td>
+                <input type="text" id="jqueryColorField" name="color" value="@(calendarId.HasValue ? calendarInfo.Color : "")" /> 
+                <span id="jqueryColorSwatch" class="swatch width100 rounded-top rounded-bottom" style="@(calendarId.HasValue ? "background-color: @(calendarInfo.Color);" : "") border-color: black;">&nbsp;</span>
+            </td>
+        </tr>
+        @if (calendarId.HasValue){
+            <tr>
+                <td>Created By</td>
+                <td>@UserHelper.GetUser(calendarInfo.Creator).Email</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2" id="submit"><input type="submit" name="submit" value="@(calendarId.HasValue ? "Save" : "Create")" /></td>
+        </tr>
+    </table>
+</form>

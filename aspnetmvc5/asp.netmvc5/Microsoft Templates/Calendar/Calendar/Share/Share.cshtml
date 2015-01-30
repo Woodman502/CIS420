@@ -1,0 +1,73 @@
+﻿@{
+
+    if (!UrlData.Any()) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    int calId = UrlData[0].AsInt();
+
+    var calInfo = Calendar.GetUserCalendar(WebSecurity.CurrentUserId, calId);
+
+    if (calInfo == null) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Calendar Id");
+        return;
+    }
+
+    // Check that the current user has the ability to share the calendar
+    if (calInfo.Permissions < (int)Permission.Own) {   
+        RequestData.SetValue("InfoPaneTitle", "No Permissions to Delete Calendar " + calId);
+        return;
+    }
+
+    RequestData.SetValue("InfoPaneTitle", "Calendar: " + calInfo.Name);
+
+    if (IsPost) {
+        var email = Request["email"];
+        if (email.IsEmpty()) {
+            ModelState.AddError("email", "You must specify a user name.");
+        } else if (!UserHelper.UserExists(email)) {
+            // check that the user exist
+            ModelState.AddError("email", "No user exists with that email.");
+        } else if (UserHelper.CurrentUser.Email.Equals(email, StringComparison.OrdinalIgnoreCase)) {
+            ModelState.AddError("email", "You can't share a calendar with yourself.");
+        }
+
+        var permission = Request["permission"];
+        Permission result = Permission.View;
+
+        if (permission.IsEmpty()) {
+             ModelState.AddError("permission", "You must specify a permission level");
+        } else if (!Enum.TryParse<Permission>(permission, out result)) {
+            // validate the specified permission level
+            ModelState.AddError("permission", "You must specify a valid permission level");
+        }
+
+        if (ModelState.IsValid) {
+            Sharing.ShareCalendar(calId, WebSecurity.GetUserId(email), result);
+            Response.Redirect("~/Calendar/Info/" + calId);
+        }
+    }
+}
+@Html.ValidationSummary()
+    <form method="post" action="">
+        <table class="info">
+            <tr>
+                <td><label for="email">Share With</label></td>
+                <td>@Html.TextBox("email")</td>
+            </tr>
+            <tr>
+                <td><label for="permission">Permission Level</label></td>
+                <td>
+                    <select id="permission" name="permission">
+                        @foreach (var level in Enum.GetValues(typeof(Permission))) {
+                            <option value="@((int)level)">@level</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" id="submit"><input type="submit" name="submit" value="Share" /></td>
+            </tr>
+        </table>
+    </form>

@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+    if (!UrlData.Any()) {
+        @:No Calendar Specified
+        return;
+    }
+    if (UrlData.Count < 2) {
+        @:Calendar Id or Hash not specified
+    }
+
+    int calendarId = System.IO.Path.GetFileNameWithoutExtension(UrlData[0]).AsInt();
+
+    var calendar = Calendar.GetCalendarByHash(calendarId, UrlData[1]);
+
+    if (calendar == null) {
+        @:Invalid Calendar Id or Hash
+        return;
+    }
+
+    var icsCalendar = IcsHelper.BuildCalendar(calendar.Id);
+
+    Response.ClearContent();
+    Response.AppendHeader("Content-Type", "application/octet-stream");// "text/calendar");
+    Response.AppendHeader("Content-Disposition:", String.Format("attachment; filename={0}", HttpUtility.UrlPathEncode(calendar.Name + ".ics")));
+    Response.Write(icsCalendar.ToString());
+    return;
+}

@@ -1,0 +1,10 @@
+﻿@{
+    RequestData.SetValue("InfoPaneTitle", "Add a Calendar");
+
+    var calObj = new {   
+        Name = Request["name"],
+        Color = Request["color"],
+    };
+
+    @RenderPage(Themes.GetResourcePath("Partials", "CalendarForm.cshtml"), calObj);
+}

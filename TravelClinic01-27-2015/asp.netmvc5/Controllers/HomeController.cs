@@ -32,5 +32,11 @@ namespace asp.netmvc5.Controllers
 
             return View();
         }
+        public ActionResult Calendar()
+        {
+            ViewBag.Message = "Calendar page.";
+
+            return View();
+        }
     }
 }

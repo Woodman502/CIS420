@@ -1,0 +1,11 @@
+﻿@{
+    var cookie = Request.Cookies.Get("CalendarView");
+    string view = cookie != null ? cookie.Value : "Month";
+    string page = null;
+}
+@if (view == "List") {
+    page = Themes.GetResourcePath("Displays", "List.cshtml");
+} else {
+    page = Themes.GetResourcePath("Displays", "Month.cshtml");
+}
+@RenderPage(page)

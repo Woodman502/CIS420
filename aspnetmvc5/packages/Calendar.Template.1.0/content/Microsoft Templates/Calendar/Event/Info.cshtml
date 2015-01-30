@@ -1,0 +1,77 @@
+﻿@{
+    if (!UrlData.Any()) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Event Id");
+        return;
+    }
+
+    int eventId = UrlData[0].AsInt();
+
+    // Check if the event id is tied to the current user
+    var eventInfo = Event.GetUserEvent(WebSecurity.CurrentUserId, eventId);
+
+    if (eventInfo == null) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Event Id");
+        return;
+    }
+
+    RequestData.SetValue("InfoPaneTitle", "Event: "+eventInfo.Name);
+
+    DateTime start = Time.UtcToLocal(eventInfo.Start);
+    DateTime end = Time.UtcToLocal(eventInfo.End);
+}
+<fieldset>
+    <table class="info">
+        <tr>
+            <td>Event Name</td>
+            <td>@eventInfo.Name</td>
+        </tr>
+        <tr>
+            <td>Event Description</td>
+            <td>@eventInfo.Description</td>
+        </tr>
+        <tr>
+            <td>Event Location</td>
+            <td>@eventInfo.Location</td>
+        </tr>
+        <tr>
+            <td>All Day Event</td>
+            <td>@eventInfo.AllDay</td>
+        </tr>
+        @if (eventInfo.AllDay) {
+            <tr>
+                <td>Date</td>
+                <td>
+                    @start.ToString("d")
+                </td>
+            </tr>
+        } else {
+        <tr>
+            <td>Start</td>
+            <td>
+                @start
+            </td>
+        </tr>
+        <tr>
+            <td>End</td>
+            <td>
+                @end
+            </td>
+        </tr>
+        }
+        <tr>
+            <td>Calendar Name</td>
+            <td><span class="swatch rounded-top rounded-bottom" style="background-color: @(eventInfo.Color); border-color: @(ColorHelper.GetBorderFromHtml(eventInfo.Color));">&nbsp;</span>@eventInfo.CalendarName</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="center">
+                @if (eventInfo.Permissions >= (int)Permission.Edit) {
+                    <text>
+                        <a href="@Href("~/Event/Edit", eventInfo.Id)">Edit</a> - 
+                        <a href="@Href("~/Event/Delete", eventInfo.Id)">Delete</a> - 
+                    </text>
+                }
+                <a href="@Href("~/Event/Download", eventInfo.Id)">Download</a>
+            </td>
+        </tr>
+    </table>
+</fieldset>

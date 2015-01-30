@@ -1,0 +1,22 @@
+﻿@{
+    if (!UrlData.Any()) {
+        RequestData.SetValue("InfoPaneTitle", "Invalid Event Id");
+        return;
+    }
+
+    int eventId = UrlData[0].AsInt();
+
+    var eventObj = new {   
+        EventId = eventId,
+        Name = Request["name"],
+        Description = Request["description"],
+        AllDay = Request["allDay"],
+        StartDate = Request["sDate"],
+        StartTime = Request["sTime"],
+        EndTime = Request["eTime"],
+        Location = Request["location"],
+        CalendarId = Request["calendar"]
+    };
+
+    @RenderPage(Themes.GetResourcePath("Partials", "EventForm.cshtml"), eventObj);
+}
