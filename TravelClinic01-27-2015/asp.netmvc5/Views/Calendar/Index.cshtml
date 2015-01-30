@@ -11,15 +11,36 @@
 
 
         $(document).ready(function () {
-            $('#calendar').fullCalendar({
-                theme: true,
+            var calendar = $('#calendar');
+           calendar.fullCalendar({
+                           header: {
+                           left: 'prev,next today',
+                           center: 'title',
+                           right: 'month,agendaWeek,agendaDay'
+                       },
+                       defaultDate: '2014-11-12',
+                       editable: true,
+                       eventLimit: true, // allow "more" link when too many events
+                       selectable: true,
+                       selectHelper: true,
+                       select: function (start, end) {
+                           var title = prompt('Event Title:');
+                           var eventData;
+                           if (title) {
+                               eventData = {
+                                   title: title,
+                                   start: start,
+                                   end: end
+                               };
+                               $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                           }
+                           $('#calendar').fullCalendar('unselect');
+                          
 
-                //defaultView: 'agendaDay',
-                editable: false,
-                events: "/home/getevents/"
+                       }
             });
         });
-
+        
 
     </script>
 
