@@ -1,46 +1,29 @@
 ﻿@{
     ViewBag.Title = "Calendar Page";
 }
-<div class=" = jumbotron">
-    <h1>Event Calendar</h1>
-    <div id="calendar"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="https://www.google.com/calendar/render#h%7Cmonth">Create Appointment</a></li>
+                <li><a href="https://www.google.com/calendar/render#h%7Cmonth">Edit Appointment</a></li>
+                <li><a href="https://www.google.com/calendar/render#h%7Cmonth">Delete Appointment</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-md-10 main">
+            
+            <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=2&amp;hl=en&amp;bgcolor=%23ffffff&amp;src=rgc1cvdo6skouor82dmk2tiie4%40group.calendar.google.com&amp;color=%236B3304&amp;ctz=America%2FNew_York"
+                    style=" border-width:0 " width="700" height="500" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
 </div>
+        
 @section scripts{
 
     <script type="text/javascript">
 
 
-        $(document).ready(function () {
-            var calendar = $('#calendar');
-           calendar.fullCalendar({
-                           header: {
-                           left: 'prev,next today',
-                           center: 'title',
-                           right: 'month,agendaWeek,agendaDay'
-                       },
-                       defaultDate: '2014-11-12',
-                       editable: true,
-                       eventLimit: true, // allow "more" link when too many events
-                       selectable: true,
-                       selectHelper: true,
-                       select: function (start, end) {
-                           var title = prompt('Event Title:');
-                           var eventData;
-                           if (title) {
-                               eventData = {
-                                   title: title,
-                                   start: start,
-                                   end: end
-                               };
-                               $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-                           }
-                           $('#calendar').fullCalendar('unselect');
-                          
-
-                       }
-            });
-        });
-        
+       
 
     </script>
 

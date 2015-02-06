@@ -226,3 +226,4 @@ C:\Users\Joe Woodcox\Documents\GitHub\CIS420\TravelClinic01-27-2015\asp.netmvc5\
 C:\Users\Joe Woodcox\Documents\GitHub\CIS420\TravelClinic01-27-2015\asp.netmvc5\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Joe Woodcox\Documents\GitHub\CIS420\TravelClinic01-27-2015\asp.netmvc5\obj\Debug\asp.netmvc5.dll
 C:\Users\Joe Woodcox\Documents\GitHub\CIS420\TravelClinic01-27-2015\asp.netmvc5\obj\Debug\asp.netmvc5.pdb
+C:\Users\Joe Woodcox\Documents\GitHub\CIS420\TravelClinic01-27-2015\asp.netmvc5\obj\Debug\TravelClinic.csprojResolveAssemblyReference.cache
