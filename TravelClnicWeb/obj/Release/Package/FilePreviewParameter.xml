@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Nicholas\\Desktop\\Prog-Commits\\masterproj\\Stable\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Nicholas\\Desktop\\Prog-Commits\\masterproj\\Stable\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Nicholas\Desktop\Prog-Commits\Stable\aspnetmvc5\asp.netmvc5\App_Data\Vaccines.mdf;Integrated Security=True;Connect Timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nicholas\\Desktop\\Prog-Commits\\masterproj\\Stable\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="VaccineDBContext-Web.config Connection String" description="" value="Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Nicholas\Desktop\Prog-Commits\Stable\aspnetmvc5\asp.netmvc5\App_Data\Vaccines.mdf;Integrated Security=True;Connect Timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nicholas\\Desktop\\Prog-Commits\\masterproj\\Stable\\aspnetmvc5\\asp\.netmvc5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='VaccineDBContext']/@connectionString" />
+  </parameter>
+</parameters>
