@@ -488,13 +488,11 @@ C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\log4net.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Microsoft.Threading.Tasks.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Microsoft.Threading.Tasks.Extensions.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
-C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Newtonsoft.Json.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\System.Net.Http.Extensions.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\System.Net.Http.Primitives.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Microsoft.Web.Infrastructure.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Zlib.Portable.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\obj\Debug\TravelClinic.csproj.App.config
-C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\obj\Debug\TravelClinic.csprojResolveAssemblyReference.cache
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\obj\Debug\asp.netmvc5.dll
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\obj\Debug\asp.netmvc5.pdb
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\DotNetOpenAuth.dll
@@ -510,3 +508,4 @@ C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Google.Apis.Authen
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Google.Apis.Authentication.OAuth2.xml
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Google.Apis.Drive.v2.pdb
 C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\bin\Google.Apis.Drive.v2.xml
+C:\Users\Gatsuh\Documents\UofL\CIS420\CIS420\TravelClinic\obj\Debug\TravelClinic.csprojResolveAssemblyReference.cache

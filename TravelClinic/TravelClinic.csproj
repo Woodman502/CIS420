@@ -229,6 +229,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\FileManagerController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VaccinesController.cs" />
@@ -239,7 +240,7 @@
     <Compile Include="Models\IdentityModels.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\QuickStart.cs" />
+    <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Vaccine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -259,6 +260,7 @@
     <Content Include="Content\jquery.dataTables.css" />
     <Content Include="Content\local.css" />
     <Content Include="Content\normalize.css" />
+    <Content Include="document.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Files\eye.jpg" />
     <Content Include="Files\hello_world.txt" />
@@ -351,6 +353,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\FileManager\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
