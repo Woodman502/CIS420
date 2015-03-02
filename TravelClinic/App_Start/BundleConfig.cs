@@ -27,6 +27,15 @@ namespace asp.netmvc5
                       "~/Content/bootstrap.css",
                       "~/Content/dashboard.css",
                       "~/Content/site.css"));
+           
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui-{version}.js"));
+            
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+              "~/Content/themes/base/core.css",             
+              "~/Content/themes/base/autocomplete.css",             
+              "~/Content/themes/base/theme.css"));
+
         }
     }
 }

@@ -183,19 +183,55 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\CalendarsController.cs" />
+    <Compile Include="Controllers\FileManagerController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NDC_LookupController.cs" />
     <Compile Include="Controllers\VaccinesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503020335278_InitialCreate.cs" />
+    <Compile Include="Migrations\201503020335278_InitialCreate.Designer.cs">
+      <DependentUpon>201503020335278_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503021039433_InitialCreate1.cs" />
+    <Compile Include="Migrations\201503021039433_InitialCreate1.Designer.cs">
+      <DependentUpon>201503021039433_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503021123140_fourthcreate.cs" />
+    <Compile Include="Migrations\201503021123140_fourthcreate.Designer.cs">
+      <DependentUpon>201503021123140_fourthcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503021235024_fifthcreate.cs" />
+    <Compile Include="Migrations\201503021235024_fifthcreate.Designer.cs">
+      <DependentUpon>201503021235024_fifthcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503021242402_sixcreate.cs" />
+    <Compile Include="Migrations\201503021242402_sixcreate.Designer.cs">
+      <DependentUpon>201503021242402_sixcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503021735361_sevencreate.cs" />
+    <Compile Include="Migrations\201503021735361_sevencreate.Designer.cs">
+      <DependentUpon>201503021735361_sevencreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503021815519_eightcreate.cs" />
+    <Compile Include="Migrations\201503021815519_eightcreate.Designer.cs">
+      <DependentUpon>201503021815519_eightcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\IdentityModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\NDC_Lookup.cs" />
+    <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Vaccine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\VaccineNDCGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\ElFinder.Net.dll" />
@@ -212,6 +248,39 @@
     <Content Include="Content\jquery.dataTables.css" />
     <Content Include="Content\local.css" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="Files\eye.jpg" />
     <Content Include="Files\hello_world.txt" />
@@ -257,6 +326,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.3.js" />
+    <Content Include="Scripts\jquery-ui-1.11.3.min.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -296,14 +367,32 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\HelloWorld\Index.cshtml" />
     <Content Include="Views\HelloWorld\Welcome.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\FileManager\index.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\UserRoles.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SelectRoleEditorViewModel.cshtml" />
+    <Content Include="Views\NDC_Lookup\Create.cshtml" />
+    <Content Include="Views\NDC_Lookup\Delete.cshtml" />
+    <Content Include="Views\NDC_Lookup\Details.cshtml" />
+    <Content Include="Views\NDC_Lookup\Edit.cshtml" />
+    <Content Include="Views\NDC_Lookup\Index.cshtml" />
     <Content Include="Views\Vaccines\Create.cshtml" />
     <Content Include="Views\Vaccines\Delete.cshtml" />
     <Content Include="Views\Vaccines\Details.cshtml" />
     <Content Include="Views\Vaccines\Edit.cshtml" />
     <Content Include="Views\Vaccines\Index.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Calendar\Index.cshtml" />
-    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Vaccines\VaccineReport.cshtml" />
+    <Content Include="Views\Calendars\Appointments.cshtml" />
+    <Content Include="Views\Calendars\Create.cshtml" />
+    <Content Include="Views\Calendars\Delete.cshtml" />
+    <Content Include="Views\Calendars\Details.cshtml" />
+    <Content Include="Views\Calendars\Edit.cshtml" />
+    <Content Include="Views\Calendars\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +408,29 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201503020335278_InitialCreate.resx">
+      <DependentUpon>201503020335278_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503021039433_InitialCreate1.resx">
+      <DependentUpon>201503021039433_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503021123140_fourthcreate.resx">
+      <DependentUpon>201503021123140_fourthcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503021235024_fifthcreate.resx">
+      <DependentUpon>201503021235024_fifthcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503021242402_sixcreate.resx">
+      <DependentUpon>201503021242402_sixcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503021735361_sevencreate.resx">
+      <DependentUpon>201503021735361_sevencreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503021815519_eightcreate.resx">
+      <DependentUpon>201503021815519_eightcreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
