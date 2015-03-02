@@ -12,7 +12,7 @@ using asp.netmvc5.Models;
 
 namespace asp.netmvc5.Controllers
 {
- 
+    [Authorize]
     public class AccountController : Controller
     {
         public AccountController()
@@ -378,7 +378,8 @@ namespace asp.netmvc5.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

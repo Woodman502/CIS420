@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title = "_AdminLayout"</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/dashboard.css")
+  
 
     @section Scripts {
        
@@ -56,27 +57,37 @@
 
 
     <div class="container-fluid">
-        <div class="row">
+       
             <div class="col-sm-3 col-md-2 sidebar">
-              
-                <ul class="nav nav-sidebar">
-                    <li>@Html.ActionLink("Vaccines", "Index", "Vaccines")</li>
-                    <li>@Html.ActionLink("Calendar", "Index", "Calendar")</li>
-
+                <ul class="nav nav-tabs">
+                    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                           Calendar
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Calendar", "Appointments", "Calendars")</li>
+                                <li>@Html.ActionLink("Appointment Requests", "Index","Calendars")</li>
+                                <li>@Html.ActionLink("Patient Logins", "Index", "Users")</li>
+                        </ul>
+                    </li>
+                    
                 </ul>
                 <ul class="nav nav-sidebar">
+                    
+                    <li>@Html.ActionLink("Vaccines", "Index", "Vaccines")</li>
                     <li>@Html.ActionLink("Grants", "About", "Home")</li>
                     <li><a href="" class="">Refugees</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                </ul>
+               </ul>
+                
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <div class="row placeholder">
                     @RenderBody()
                 </div>
             </div>
-    </div>
+ 
 </div>
     @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
     @Scripts.Render("~/bundles/bootstrap")

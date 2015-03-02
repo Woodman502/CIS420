@@ -4007,8 +4007,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .nav .caret {
-  border-top-color: #428bca;
-  border-bottom-color: #428bca;
+  border-top-color: black;
+  border-bottom-color: black;
 }
 
 .nav a:hover .caret {

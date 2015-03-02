@@ -1,29 +1,62 @@
-﻿@{
+﻿@model asp.netmvc5.Models.Calendar
+
+@{
     ViewBag.Title = "Contact";
 }
+@Styles.Render("~/Content/ScheduleAppointmentForm.css")
 
-<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=500&amp;wkst=1&amp;bgcolor=%23ff6666&amp;src=rgc1cvdo6skouor82dmk2tiie4%40group.calendar.google.com&amp;color=%23A32929&amp;ctz=America%2FNew_York" style=" border-width:1 " width="700" height="500" frameborder="0" scrolling="no"></iframe>
- <div class="col-md-4">
-        <h2>Schedule Appointment</h2>
-	<div class="container">
-		  <h2></h2>
-		  <form role="form">
-		    <div class="form-group">
-		      <label for="email">Email:</label>
-		      <input type="email" class="form-control" id="email" placeholder="Enter email">
-		    </div>
-		    <div class="form-group">
-		      <label for="pwd">Name:</label>
-		      <input type="Name" class="form-control" id="pwd" placeholder="Enter Name">
-		    </div>
-		     <div class="form-group">
-		      <label for="pwd">Date:</label>
-		      <input type="Date" class="form-control" id="pwd" placeholder="Enter Date">
-		    </div>
-		    <div class="checkbox">
-		      <label><input type="checkbox"> Remember me</label>
-		    </div>
-		    <button type="submit" class="btn btn-lg btn-danger">Submit</button>
-		  </form>
-		</div>
-    </div>
+
+ <div class="container-fluid" >
+     <p class=" = pull-right">
+         <iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=500&amp;wkst=1&amp;bgcolor=%23ff6666&amp;src=rgc1cvdo6skouor82dmk2tiie4%40group.calendar.google.com&amp;color=%23A32929&amp;ctz=America%2FNew_York"
+                 style=" border-width:0 " width="600" height="500" frameborder="0" scrolling="no" align="bottom" marginwidth="0"></iframe>
+     </p>   
+     
+           <h3>
+              Schedule Appointment
+          </h3>
+     <div id="calendarform" >
+         <form class ="floatleft"role="form">
+             <div class="form-group" align="left">
+                    <label for="name">Name:</label>
+                    <div class="input-group" id="name">
+                        
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                            @Html.EditorFor(model => model.Name)
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </span>
+                    </div>
+             </div>
+             <div class="form-group">
+                 <label for="email">Email:</label>
+                     <div class="input-group"id="email">
+                         <span class="input-group-addon">
+                             <span class="glyphicon glyphicon-envelope"></span>
+                             @Html.EditorFor(model => model.Email)
+                             @Html.ValidationMessageFor(model => model.Email)
+                         </span>
+                     </div>
+            </div>
+            <div class="form-group">
+                <label for="Date">Date:</label>
+               @Html.EditorFor(model => model.RequestDate)
+               @Html.ValidationMessageFor(model => model.RequestDate)
+            </div>
+            <div class="form-group checkbox" align="left">
+                     <label for="checkbox">First Time Patient:</label>
+                         <div class="radio">
+                             @Html.EditorFor(model => model.NewUser)
+                             @Html.ValidationMessageFor(model => model.NewUser)
+                         </div>
+            </div>
+             <span>
+                 <button type="submit" value="Create" class="btn btn-group-lg btn-danger">Submit Request</button>
+             </span>
+</form>
+     </div>
+
+         </div>
+
+	
+  

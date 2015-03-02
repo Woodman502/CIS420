@@ -1,0 +1,22 @@
+﻿body{
+    background-color:red;
+    color:white;
+    font-family:cursive;
+    stroke-opacity:initial;
+      }
+span{
+    background-color: white;
+}
+
+input{
+    border-style:groove;
+    
+}
+
+span.input-group-addon{
+    background-color:red;
+} 
+#calendarform{
+    background-color:red;
+    color:black;
+}
