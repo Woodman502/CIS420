@@ -229,7 +229,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\CalendarController.cs" />
-    <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="Controllers\FileManagerControllerold.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VaccinesController.cs" />
