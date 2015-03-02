@@ -459,3 +459,17 @@ C:\Users\cis420yellow\Desktop\TravelClinic\bin\ElFinder.Net.pdb
 C:\Users\cis420yellow\Desktop\TravelClinic\bin\EntityFramework.xml
 C:\Users\cis420yellow\Desktop\TravelClinic\bin\EntityFramework.SqlServer.xml
 C:\Users\cis420yellow\Desktop\TravelClinic\bin\Microsoft.Web.Infrastructure.xml
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\asp.netmvc5.dll.config
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\asp.netmvc5.dll
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\asp.netmvc5.pdb
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\EntityFramework.dll
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\EntityFramework.SqlServer.dll
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\System.Web.Mvc.dll
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\EntityFramework.xml
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\EntityFramework.SqlServer.xml
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\Microsoft.Web.Infrastructure.xml
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\bin\Newtonsoft.Json.xml
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\obj\Debug\TravelClinic.csprojResolveAssemblyReference.cache
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.dll
+C:\Users\cewon_000\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.pdb
