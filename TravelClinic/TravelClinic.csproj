@@ -229,7 +229,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\CalendarController.cs" />
-    <Compile Include="Controllers\FileManagerControllerold.cs" />
+    <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="Controllers\GrantManagerController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VaccinesController.cs" />
@@ -237,6 +238,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GrantManagerModel.cs" />
     <Compile Include="Models\IdentityModels.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -354,6 +356,7 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\FileManager\index.cshtml" />
+    <Content Include="Views\GrantManager\GrantManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

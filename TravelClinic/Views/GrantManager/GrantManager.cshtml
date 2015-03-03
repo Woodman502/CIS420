@@ -1,0 +1,33 @@
+﻿@model asp.netmvc5.Models.GrantManagerModel
+@{
+    ViewBag.Title = "Grant Manager";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Grant Manager</h2>
+
+@using (Html.BeginForm("Description", "Type", FormMethod.Post,
+    new {enctype = "multipart/form-data"}))
+{
+    
+    @Html.LabelFor(m => m.Description)
+    <div>@Html.TextBoxFor(m => m.Description)</div>
+    
+    @Html.LabelFor(m => m.Type)
+    <div>@Html.TextBoxFor(m => m.Type)</div>
+    <br/><br/>
+    
+    <input type="file" name="FileUpload1"  />
+    <input type="file" name="FileUpload2"  />
+    <input type="file" name="FileUpload3"  />
+    <input type="file" name="FileUpload4"  />
+    <input type="file" name="FileUpload5"  />
+    <br/>
+    
+    <input type="submit" value="Upload" class="submit"/>
+
+    <div class="err">
+        @Html.ValidationSummary()
+    </div>
+}
+
