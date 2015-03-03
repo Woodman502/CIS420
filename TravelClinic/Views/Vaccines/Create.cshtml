@@ -1,4 +1,5 @@
 ﻿@model asp.netmvc5.Models.Vaccine
+@{<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">}
 @{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -29,6 +30,13 @@
                 this.menu.element.outerWidth(500);
             }
         });
+
+           $(function() {
+              $( "#Date_Added" ).datepicker();
+           });
+           $(function () {
+               $("#Date_Expire").datepicker();
+           });
    
     </script>
     }

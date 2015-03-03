@@ -1,21 +1,17 @@
 ﻿@model asp.netmvc5.Models.Calendar
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">}
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Styles.Render("~/Content/ScheduleAppointmentForm.css")
-    
+@{
+    <script>
+       
+        $(function () {
+            $("#RequestDate").datepicker();
+        });
+</script>
+}
     @using (Html.BeginForm()) 
     {
         @Html.AntiForgeryToken()
@@ -68,5 +64,4 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+

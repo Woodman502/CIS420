@@ -15,18 +15,7 @@ namespace asp.netmvc5.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            IQueryable<VaccineNDCGroup> data = from vaccine in db.Vaccines
-                                               group vaccine by vaccine.Barcode_NDC into numGroup
-                                               select new VaccineNDCGroup()
-                                               {
-
-                                                   Barcode_NDC = numGroup.Key,
-                                                   VaccineCount = numGroup.Count()
-                                               };
-            return View(data.ToList());
-        }
+      
 
         public ActionResult Contact()
         {

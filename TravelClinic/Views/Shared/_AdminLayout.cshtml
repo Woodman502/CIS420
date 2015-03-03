@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=3.0">
     <title>@ViewBag.Title = "_AdminLayout"</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -21,13 +21,8 @@
 
         @Scripts.Render("~/bundles/jqueryval")
    
-        @Styles.Render("~/Content/jquery.dataTables.css")
   
    
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('#vaccine').DataTable();
-        });</script>
 
     }
 
@@ -62,79 +57,219 @@
         </div>
     </nav>
 
-
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-
-                <ul class="nav nav-sidebar">
-                    <li>
-                        @Html.ActionLink("Manage Vaccines", "Index", "Vaccines")
-                        <ul>
-                            <li>@Html.ActionLink("Inventory", "Index", "Vaccines")</li>
-                            <li>@Html.ActionLink("CDC Data", "Index", "NDC_Lookup")</li>
-                            <li>@Html.ActionLink("Reports", "Index", "Vaccines")</li>
-                           
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li>
-                        @Html.ActionLink("Manage Appointments", "Appointments", "Calendars")
-                        <ul>
-                            <li>@Html.ActionLink("Calendar", "Appointments", "Calendars")</li>
-                            <li>@Html.ActionLink("Appointment Requests", "Index", "Calendars")</li>
-                            <li>@Html.ActionLink("Patient Logins", "Index", "Users")</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="nav nav-sidebar">
-                    <li>
-                        @Html.ActionLink("Manage Grants", "Index", "FileManager")
-                        <ul>
-                            <li> @Html.ActionLink("Grant Data", "Index", "FileManager")</li>
-                            <li> @Html.ActionLink("Grant Files", "Index", "FileManager")</li>
-                        </ul>
-                    </li>
-                </ul>
-                @*<ul class="nav nav-sidebar">
-                         <ul class="nav nav-tabs">
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                               Appointments
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Calendar", "Appointments", "Calendars")</li>
-                                    <li>@Html.ActionLink("Appointment Requests", "Index","Calendars")</li>
-                                    <li>@Html.ActionLink("Patient Logins", "Index", "Users")</li>
-                            </ul>
-                        </li>
-
-                    </ul>*@
-                <ul class="nav nav-sidebar">
-                    <li>
-                        @Html.ActionLink("Manage Accounts", "Index", "Account")
-                        <ul>
-                            <li> @Html.ActionLink("Employees", "Index", "Account")</li>
-                            <li> @Html.ActionLink("Patients", "Index", "Account")</li>
-                        </ul>
-                    </li>
-                </ul>
-      
-                <ul class="nav nav-sidebar"></ul>
+            <div class="col-sm-2 col-md-2 sidebar" style="background-color: #AA4439 ; border-color: #AA4439">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <span class="glyphicon glyphicon-plus">
+                                    </span>  Vaccines
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                 
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Inventory", "Index", "Vaccines")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("CDC Data", "Index", "NDC_Lookup")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Reports", "Index", "Reports")</a>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    <span class="glyphicon glyphicon-calendar">
+                                    </span>  Appointments
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Calendar", "Appointments", "Calendars")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Appointment Requests", "Index", "Calendars")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Patient Logins", "Index", "Account")</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    <span class="glyphicon glyphicon-user">
+                                    </span>  Manage Accounts
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Employees", "Index", "Account")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Patients", "Index", "Account")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Refugees", "Index", "Account")
+                                        </td>
+                                    </tr>
+                                   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    <span class="glyphicon glyphicon-file">
+                                    </span> Manage Grants
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Manage Grants", "Index", "FileManager")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Grant Data", "Index", "FileManager")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Grant Files", "Index", "FileManager")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Grant Reports", "Index", "FileManager")
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <div class="row placeholder">
-                    @RenderBody()
+
+
+
+
+                @*@<div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 sidebar">
+
+                            <nav class="nav nav-sidebar">
+                                <li>
+                                    @Html.ActionLink("Manage Vaccines", "Index", "Vaccines")
+                                    <ul>
+                                        <li>@Html.ActionLink("Inventory", "Index", "Vaccines")</li>
+                                        <li>@Html.ActionLink("CDC Data", "Index", "NDC_Lookup")</li>
+                                        <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+
+                                    </ul>
+                                </li>
+                            </nav>
+                            <nav class="nav nav-sidebar">
+                                <li>
+                                    @Html.ActionLink("Manage Appointments", "Appointments", "Calendars")
+                                    <ul>
+                                        <li>@Html.ActionLink("Calendar", "Appointments", "Calendars")</li>
+                                        <li>@Html.ActionLink("Appointment Requests", "Index", "Calendars")</li>
+                                        <li>@Html.ActionLink("Patient Logins", "Index", "Users")</li>
+                                    </ul>
+                                </li>
+                            </nav>
+
+                            <nav class="nav nav-sidebar">
+                                <li>
+                                    @Html.ActionLink("Manage Grants", "Index", "FileManager")
+                                    <ul>
+                                        <li> @Html.ActionLink("Grant Data", "Index", "FileManager")</li>
+                                        <li> @Html.ActionLink("Grant Files", "Index", "FileManager")</li>
+                                    </ul>
+                                </li>
+                            </nav>
+                            <nav class="nav nav-sidebar">
+
+
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                           Vaccines
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>@Html.ActionLink("Inventory", "Index", "Vaccines")</li>
+                                            <li>@Html.ActionLink("CDC Data", "Index", "NDC_Lookup")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                                        </ul>
+                                    </li>
+
+                                </nav>
+                                </ul>
+                            <ul class="nav nav-sidebar">
+                                <li>
+                                    @Html.ActionLink("Manage Accounts", "Index", "Account")
+                                    <ul>
+                                        <li> @Html.ActionLink("Employees", "Index", "Account")</li>
+                                        <li> @Html.ActionLink("Patients", "Index", "Account")</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="nav nav-sidebar"></ul>
+                        </div>*@
+                <div class="col-sm-9 col-md-9">
+                    <div class="row placeholder">
+                        @RenderBody()
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
 
 </body>
 </html>

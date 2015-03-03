@@ -8,6 +8,7 @@ namespace asp.netmvc5.Models
     {
         public Int64? Barcode_NDC { get; set; }
         public int VaccineCount { get; set; }
+        public string Description { get; set; }
 
 
     }

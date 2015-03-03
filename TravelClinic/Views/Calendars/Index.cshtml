@@ -4,18 +4,12 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
+    <h3>Appointment Requests</h3>
+    <br />
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table">
+    <table id="Calendarstbl" class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -55,5 +49,4 @@
     }
     
     </table>
-</body>
-</html>
+
