@@ -62,49 +62,51 @@
     <li role="presentation" class="#">@Html.ActionLink("Custom Report", "Index", "Reports")</li>
 
 </ul>
-<br />
+<div class="container-fluid" width="60%">
 
-<table id="reports" class="table table-striped table-bordered" cellspacing="0" align="left">
-    <thead>
-        <tr>
-            <th>
-                Quantity On Hand
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                NDC_Barcode
-            </th>
-           
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>
-                Quantity On Hand
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                NDC_Barcode
-            </th>
-          
-        </tr>
-    </tfoot>
+    <br />
+    <table id="reports" class="table table-striped table-bordered" cellspacing="0" width="60%">
+        <thead>
+            <tr>
+                <th>
+                    Quantity On Hand
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    NDC_Barcode
+                </th>
 
-    @foreach (var item in Model)
-    {
-        
-        <tr>
-            <td>
-                @item.VaccineCount
-            </td>
-            <td>@Html.DisplayFor(modelItem => item.Description)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Barcode_NDC)
-            </td>
-        </tr>
-    }
-</table>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>
+                    Quantity On Hand
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    NDC_Barcode
+                </th>
+
+            </tr>
+        </tfoot>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @item.VaccineCount
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Barcode_NDC)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

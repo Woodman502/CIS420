@@ -57,9 +57,9 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2 col-md-2 sidebar" style="background-color: #AA4439 ; border-color: #AA4439">
+            <div class="col-sm-3 col-md-2 sidebar" style="background-color: #AA4439 ; border-color: #AA4439">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -263,13 +263,14 @@
 
                             <ul class="nav nav-sidebar"></ul>
                         </div>*@
-                <div class="col-sm-9 col-md-9">
+               @** <div class="col-sm-9 col-md-9">*@
+           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <div class="row placeholder">
                         @RenderBody()
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
 
 </body>
 </html>
