@@ -27,6 +27,7 @@ namespace asp.netmvc5.Models
         public DbSet<Vaccine> Vaccines { get; set; }
         public System.Data.Entity.DbSet<asp.netmvc5.Models.NDC_Lookup> NDC_Lookup { get; set; }
         public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<GrantManagerModel> GrantManagers { get; set; }
         
 
     }

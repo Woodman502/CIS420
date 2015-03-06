@@ -185,6 +185,7 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CalendarsController.cs" />
     <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="Controllers\GrantManagerModelsController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NDC_LookupController.cs" />
@@ -221,9 +222,18 @@
     <Compile Include="Migrations\201503021815519_eightcreate.Designer.cs">
       <DependentUpon>201503021815519_eightcreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503060029355_grantcreate2.cs" />
+    <Compile Include="Migrations\201503060029355_grantcreate2.Designer.cs">
+      <DependentUpon>201503060029355_grantcreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503060041196_newmitg.cs" />
+    <Compile Include="Migrations\201503060041196_newmitg.Designer.cs">
+      <DependentUpon>201503060041196_newmitg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Calendar.cs" />
+    <Compile Include="Models\GrantManagerModel.cs" />
     <Compile Include="Models\IdentityModels.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -394,6 +404,11 @@
     <Content Include="Views\Calendars\Details.cshtml" />
     <Content Include="Views\Calendars\Edit.cshtml" />
     <Content Include="Views\Calendars\Index.cshtml" />
+    <Content Include="Views\GrantManagerModels\Create.cshtml" />
+    <Content Include="Views\GrantManagerModels\Delete.cshtml" />
+    <Content Include="Views\GrantManagerModels\Details.cshtml" />
+    <Content Include="Views\GrantManagerModels\Edit.cshtml" />
+    <Content Include="Views\GrantManagerModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -431,6 +446,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503021815519_eightcreate.resx">
       <DependentUpon>201503021815519_eightcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503060029355_grantcreate2.resx">
+      <DependentUpon>201503060029355_grantcreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503060041196_newmitg.resx">
+      <DependentUpon>201503060041196_newmitg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
