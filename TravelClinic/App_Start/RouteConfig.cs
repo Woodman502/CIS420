@@ -14,14 +14,33 @@ namespace asp.netmvc5
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "DownloadGrantFile",
+                url: "Files/Download/{id}/{FileName}",
+                defaults: new
+                {
+                    controller = "GrantManagerModels",
+                    action = "FileDownload",
+                    id = UrlParameter.Optional,
+                    FileName = UrlParameter.Optional
+                });
+
+            routes.MapRoute(
+                name: "DeleteGrantFile",
+                url: "Files/Delete/{id}/{FileName}",
+                defaults: new
+                {
+                    controller = "GrantManagerModels",
+                    action = "FileDelete",
+                    id = UrlParameter.Optional,
+                    FileName = UrlParameter.Optional
+                });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
-                name: "Hello",
-                url: "{controller}/{action}/{name}/{id}"
-                );
+        
         }
     }
 }

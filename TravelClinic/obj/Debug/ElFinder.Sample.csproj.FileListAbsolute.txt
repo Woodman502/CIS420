@@ -1,9 +1,0 @@
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\bin\ElFinder.Sample.dll
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\bin\ElFinder.Sample.pdb
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\bin\ElFinder.Net.dll
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\bin\Newtonsoft.Json.dll
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\bin\ElFinder.Net.pdb
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\bin\Newtonsoft.Json.xml
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\obj\Debug\ElFinder.Sample.csprojResolveAssemblyReference.cache
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\obj\Debug\ElFinder.Sample.dll
-C:\Users\cis420yellow\Desktop\ElFinder.Net\ElFinder.Net\ElFinder.Sample\obj\Debug\ElFinder.Sample.pdb
