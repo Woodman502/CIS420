@@ -17,17 +17,44 @@ namespace asp.netmvc5.Controllers
         // GET: Vaccines
         public ActionResult Index()
         {
-            var vaccines = db.Vaccines.Include(v => v.NDC_Lookup);
+            //var vaccines = db.Vaccines.Include(v => v.NDC_Lookup);
+            var vaccines = from r in db.Vaccines.Include(v => v.NDC_Lookup)
+                       where r.Administered.Equals(false)
+                       select r;
+            return View(vaccines.ToList());
+        }
+        public ActionResult Administered()
+        {
+            //var vaccines = db.Vaccines.Include(v => v.NDC_Lookup);
+            var vaccines = from r in db.Vaccines.Include(v => v.NDC_Lookup)
+                           where r.Administered.Equals(true)
+                           select r;
             return View(vaccines.ToList());
         }
 
+        public ActionResult TotalSales()
+        {
+            //var vaccines = db.Vaccines.Include(v => v.NDC_Lookup);
+            List<Sales> vaccines = (from r in db.Vaccines.Include(v => v.NDC_Lookup) join p in db.Patient_Vaccinations on r.Id equals p.VaccineID
+                            where r.Administered.Equals(true)
+                           group p by new {r.Description} into g
+                           select new Sales()
+                           {
+                               Description = g.Key.Description,
+                               SumOfPrice = g.Sum(x => x.Price_Paid)
+                               
+
+                           }
+                           ).ToList();
+            return View(vaccines.ToList());
+        }
        
 
         public ActionResult GetNDC(string term)
         {
              var result = 
                  from r in db.NDC_Lookup
-                         where r.Barcode_NDC.ToString().Contains(term)
+                         where r.Barcode_NDC.ToString().Contains(term) 
                          select new { Description = r.Description_CVX, Barcode_NDC = r.Barcode_NDC.ToString()};
 
             return Json(result ,JsonRequestBehavior.AllowGet);

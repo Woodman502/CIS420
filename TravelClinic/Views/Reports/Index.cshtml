@@ -49,17 +49,19 @@
 
 
 <ul class="nav nav-tabs">
+    <li role="presentation" class="#">@Html.ActionLink("Administer Vaccines", "Index", "Patient_Vaccination")</li>
     <li role="presentation" class="#">@Html.ActionLink("Inventory", "Index", "Vaccines")</li>
     <li role="presentation" class="#">@Html.ActionLink("CDC Data", "Index", "NDC_Lookup")</li>
     <li role="presentation" class="active">@Html.ActionLink("Reports", "Index", "Reports")</li>
    
 </ul>
 <br />
-<h3>Vaccine Reports</h3>
+<h2>Inventory</h2>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active">@Html.ActionLink("Inventory Report", "Index", "Reports")</li>
-    <li role="presentation" class="#">@Html.ActionLink("Sales Report", "Index", "Reports")</li>
-    <li role="presentation" class="#">@Html.ActionLink("Custom Report", "Index", "Reports")</li>
+    <li role="presentation" class="active">@Html.ActionLink("Inventory", "Index", "Reports")</li>
+    <li role="presentation" class="#">@Html.ActionLink("Sales Count", "VaccineSalesCount", "Reports")</li>
+    <li role="presentation" class="#">@Html.ActionLink("Sales Totals", "TotalSales", "Vaccines")</li>
+    <li role="presentation" class="#">@Html.ActionLink("Vaccines Sold", "Administered", "Vaccines")</li>
 
 </ul>
 <div class="container-fluid" width="60%">
