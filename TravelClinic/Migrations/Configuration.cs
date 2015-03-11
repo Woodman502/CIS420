@@ -10,7 +10,6 @@ namespace asp.netmvc5.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "asp.netmvc5.Models.VaccineDBContext";
         }
 
         protected override void Seed(asp.netmvc5.Models.VaccineDBContext context)
@@ -27,6 +26,8 @@ namespace asp.netmvc5.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+           
         }
     }
 }

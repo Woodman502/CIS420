@@ -60,11 +60,11 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3-beta1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -189,49 +189,27 @@
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NDC_LookupController.cs" />
+    <Compile Include="Controllers\Patient_VaccinationController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\VaccinesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503020335278_InitialCreate.cs" />
-    <Compile Include="Migrations\201503020335278_InitialCreate.Designer.cs">
-      <DependentUpon>201503020335278_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201503110049151_testing.cs" />
+    <Compile Include="Migrations\201503110049151_testing.Designer.cs">
+      <DependentUpon>201503110049151_testing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503021039433_InitialCreate1.cs" />
-    <Compile Include="Migrations\201503021039433_InitialCreate1.Designer.cs">
-      <DependentUpon>201503021039433_InitialCreate1.cs</DependentUpon>
+    <Compile Include="Migrations\201503110200447_entityup.cs" />
+    <Compile Include="Migrations\201503110200447_entityup.Designer.cs">
+      <DependentUpon>201503110200447_entityup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503021123140_fourthcreate.cs" />
-    <Compile Include="Migrations\201503021123140_fourthcreate.Designer.cs">
-      <DependentUpon>201503021123140_fourthcreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503021235024_fifthcreate.cs" />
-    <Compile Include="Migrations\201503021235024_fifthcreate.Designer.cs">
-      <DependentUpon>201503021235024_fifthcreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503021242402_sixcreate.cs" />
-    <Compile Include="Migrations\201503021242402_sixcreate.Designer.cs">
-      <DependentUpon>201503021242402_sixcreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503021735361_sevencreate.cs" />
-    <Compile Include="Migrations\201503021735361_sevencreate.Designer.cs">
-      <DependentUpon>201503021735361_sevencreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503021815519_eightcreate.cs" />
-    <Compile Include="Migrations\201503021815519_eightcreate.Designer.cs">
-      <DependentUpon>201503021815519_eightcreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503060029355_grantcreate2.cs" />
-    <Compile Include="Migrations\201503060029355_grantcreate2.Designer.cs">
-      <DependentUpon>201503060029355_grantcreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503060041196_newmitg.cs" />
-    <Compile Include="Migrations\201503060041196_newmitg.Designer.cs">
-      <DependentUpon>201503060041196_newmitg.cs</DependentUpon>
+    <Compile Include="Migrations\201503110242212_stocks.cs" />
+    <Compile Include="Migrations\201503110242212_stocks.Designer.cs">
+      <DependentUpon>201503110242212_stocks.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Patient_Vaccination.cs" />
     <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\GrantManagerModel.cs" />
     <Compile Include="Models\IdentityModels.cs">
@@ -239,6 +217,7 @@
     </Compile>
     <Compile Include="Models\NDC_Lookup.cs" />
     <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Sales.cs" />
     <Compile Include="Models\Vaccine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -409,6 +388,14 @@
     <Content Include="Views\GrantManagerModels\Details.cshtml" />
     <Content Include="Views\GrantManagerModels\Edit.cshtml" />
     <Content Include="Views\GrantManagerModels\Index.cshtml" />
+    <Content Include="Views\Patient_Vaccination\Create.cshtml" />
+    <Content Include="Views\Patient_Vaccination\Delete.cshtml" />
+    <Content Include="Views\Patient_Vaccination\Details.cshtml" />
+    <Content Include="Views\Patient_Vaccination\Edit.cshtml" />
+    <Content Include="Views\Patient_Vaccination\Index.cshtml" />
+    <Content Include="Views\Vaccines\Administered.cshtml" />
+    <Content Include="Views\Vaccines\TotalSales.cshtml" />
+    <Content Include="Views\Reports\VaccineSalesCount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -426,32 +413,14 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503020335278_InitialCreate.resx">
-      <DependentUpon>201503020335278_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503110049151_testing.resx">
+      <DependentUpon>201503110049151_testing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503021039433_InitialCreate1.resx">
-      <DependentUpon>201503021039433_InitialCreate1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503110200447_entityup.resx">
+      <DependentUpon>201503110200447_entityup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503021123140_fourthcreate.resx">
-      <DependentUpon>201503021123140_fourthcreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503021235024_fifthcreate.resx">
-      <DependentUpon>201503021235024_fifthcreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503021242402_sixcreate.resx">
-      <DependentUpon>201503021242402_sixcreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503021735361_sevencreate.resx">
-      <DependentUpon>201503021735361_sevencreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503021815519_eightcreate.resx">
-      <DependentUpon>201503021815519_eightcreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503060029355_grantcreate2.resx">
-      <DependentUpon>201503060029355_grantcreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503060041196_newmitg.resx">
-      <DependentUpon>201503060041196_newmitg.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503110242212_stocks.resx">
+      <DependentUpon>201503110242212_stocks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

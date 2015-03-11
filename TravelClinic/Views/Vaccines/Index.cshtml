@@ -20,6 +20,7 @@
 
 }
     <ul class="nav nav-tabs">
+        <li role="presentation" class="#">@Html.ActionLink("Administer Vaccines", "Index", "Patient_Vaccination")</li>
         <li role="presentation" class="active">@Html.ActionLink("Inventory", "Index", "Vaccines")</li>
         <li role="presentation" class="#">@Html.ActionLink("CDC Data", "Index", "NDC_Lookup")</li>
         <li role="presentation" class="#">@Html.ActionLink("Reports", "Index", "Reports")</li>
@@ -28,8 +29,9 @@
     <h3>Vaccine Inventory</h3>
 <br />
     <p>
-        @Html.ActionLink("Add Vaccine", "Create")
+        @Html.ActionLink("Add Vaccine Inventory", "Create")       
     </p>
+    
 <br />
 
 <table id="vaccine" class="table table-striped table-bordered" cellspacing="0" width="100%">

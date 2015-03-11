@@ -13,6 +13,7 @@ namespace asp.netmvc5.Models
         public DateTime Date_Added { get; set; }
         public DateTime Date_Expire { get; set; }
         public decimal Price { get; set; }
+        public bool Administered { get; set; }
         //NDC relationship
         public virtual NDC_Lookup NDC_Lookup { get; set; } 
 
@@ -28,6 +29,7 @@ namespace asp.netmvc5.Models
         public System.Data.Entity.DbSet<asp.netmvc5.Models.NDC_Lookup> NDC_Lookup { get; set; }
         public DbSet<Calendar> Calendars { get; set; }
         public DbSet<GrantManagerModel> GrantManagers { get; set; }
+        public DbSet<Patient_Vaccination> Patient_Vaccinations { get; set; }
         
 
     }
