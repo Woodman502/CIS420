@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using asp.netmvc5.Models;
 using System.IO;
+using asp.netmvc5.Models.Helpers;
 
 namespace asp.netmvc5.Controllers
 {
@@ -34,6 +35,8 @@ namespace asp.netmvc5.Controllers
             {
                 return HttpNotFound();
             }
+            Session["DetailsGrantID"] = id;
+            Session["FileViewType"] = "Download";
             return View(grantManagerModel);
         }
 
@@ -57,7 +60,7 @@ namespace asp.netmvc5.Controllers
             }
             foreach (string upload in Request.Files)
             {
-                var uploadreq = Request.Files[upload];
+                HttpPostedFileBase uploadreq = Request.Files[upload];
                 if (uploadreq != null && uploadreq.ContentLength == 0) continue;
                 string pathToSave = Server.MapPath("~/Files/");
 
@@ -116,6 +119,8 @@ namespace asp.netmvc5.Controllers
             {
                 return HttpNotFound();
             }
+            Session["DetailsGrantID"] = id;
+            Session["FileViewType"] = "Delete";
             return View(grantManagerModel);
         }
 
@@ -128,6 +133,49 @@ namespace asp.netmvc5.Controllers
             db.GrantManagers.Remove(grantManagerModel);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GrantFilesPartial(String GrantDescription)
+        {
+            var files = Directory.GetFiles(Server.MapPath("~/Files/" + GrantDescription));
+
+            var uploadedFiles = files.Select(file => new FileInfo(file)).ToList();
+
+            return PartialView(uploadedFiles);
+        }
+
+        public ActionResult FileDelete(int id, String FileName)
+        {
+            GrantManagerModel grantManagerModel = db.GrantManagers.Find(id);
+            var files = Directory.GetFiles(Server.MapPath("~/Files/" + grantManagerModel.Grant_Description));
+
+            foreach (string fileName in files)
+            {
+                FileInfo fileInfo = new FileInfo(fileName);
+                if (fileInfo.Name == FileName)
+                {
+                    fileInfo.Delete();
+                    Session["GrantMessage"] = string.Format("{0} Deleted!", FileName);
+                    break;
+                }
+            }
+
+            return RedirectToAction("Delete", new{id});
+        }
+        
+        public ActionResult FileDownload(int id, String FileName)
+        {
+            GrantManagerModel grantManagerModel = db.GrantManagers.Find(id);
+            var files = Directory.GetFiles(Server.MapPath("~/Files/" + grantManagerModel.Grant_Description));
+
+            foreach (string fileName in files)
+            {
+                FileInfo fileInfo = new FileInfo(fileName);
+                if (fileInfo.Name == FileName)
+                    return File(fileName, MimeTypes.GetMimeType(fileInfo.Name), fileInfo.Name);
+            }
+
+            return RedirectToAction("Details", new { id });
         }
 
         protected override void Dispose(bool disposing)

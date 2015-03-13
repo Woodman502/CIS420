@@ -5,14 +5,15 @@ namespace asp.netmvc5.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<asp.netmvc5.Models.VaccineDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AspNetRoleBasedSecurity.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "AspNetRoleBasedSecurity.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(asp.netmvc5.Models.VaccineDBContext context)
+        protected override void Seed(AspNetRoleBasedSecurity.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -26,8 +27,6 @@ namespace asp.netmvc5.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-           
         }
     }
 }

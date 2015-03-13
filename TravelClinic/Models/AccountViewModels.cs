@@ -153,7 +153,7 @@ namespace AspNetRoleBasedSecurity.Models
             foreach (var userRole in user.Roles)
             {
                 var checkUserRole =
-                    this.Roles.Find(r => r.RoleName == userRole.Role.Name);
+                    this.Roles.Find(r => r.RoleName == userRole.RoleId);
                 checkUserRole.Selected = true;
             }
         }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace asp.netmvc5.Models
 {
-    public class Vaccine
+   public class Vaccine
     {
         public int Id { get; set; }
         public string Description { get; set; }
@@ -29,7 +29,7 @@ namespace asp.netmvc5.Models
         public System.Data.Entity.DbSet<asp.netmvc5.Models.NDC_Lookup> NDC_Lookup { get; set; }
         public DbSet<Calendar> Calendars { get; set; }
         public DbSet<GrantManagerModel> GrantManagers { get; set; }
-        public DbSet<Patient_Vaccination> Patient_Vaccinations { get; set; }
+	public DbSet<Patient_Vaccination> Patient_Vaccinations { get; set; }
         
 
     }

@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@{
+    if (Session["GrantMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissable">@Session["GrantMessage"]</div>
+        Session["GrantMessage"] = null;
+    }
+}
+
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -35,6 +43,8 @@
         </dd>
 
     </dl>
+
+    @Html.Action("GrantFilesPartial", "GrantManagerModels", new { GrantDescription = Model.Grant_Description })
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
