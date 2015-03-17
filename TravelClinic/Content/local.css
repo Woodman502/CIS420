@@ -60,9 +60,24 @@
 .footer{background: #FFFFFF url('../images/gray_bar.png') repeat-x right top; color: white;height: 200px;}
 .news li{list-style: none}
 body{
-	background-color:#A0A3A0
+	background-color:#A0A3A0;
+    background-image: url(/images/Louisville1.jpg);
+    background-repeat: repeat;
+    background-position: center;
+    font-family: 'Amiri', serif;
+    font-style: italic;
+    font-weight: bold;
 }
 .contain{
 	background-color:white;
 }
 
+.nav-tabs > li > a {
+    font-family: 'khula', sans-serif;
+    font-weight: bolder;
+}
+
+table {
+    background-color: blue;
+
+}

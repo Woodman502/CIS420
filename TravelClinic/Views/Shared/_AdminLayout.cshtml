@@ -1,25 +1,30 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <link href='http://fonts.googleapis.com/css?family=Scheherazade|Lora:400,700,400italic,700italic|Mallanna|Amiri:400italic,700italic,400,700|Hind:400,300,500,600,700|Khula:400,300,700,800,600|Cinzel+Decorative:400,700,900|Cinzel:400,700,900|Diplomata+SC|Crimson+Text:400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=3.0">
     <title>@ViewBag.Title = "_AdminLayout"</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/fonts/ttf")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/dashboard.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/content/themes/base/local-admin.css")
+    @RenderSection("scripts", required: false)
 
     @section Scripts {
        
 
         @Scripts.Render("~/bundles/jqueryval")
    
-        @Styles.Render("~/Content/jquery.dataTables.css")
   
    
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('#vaccine').DataTable();
-        });</script>
 
     }
 
@@ -27,26 +32,24 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
+        <div class="container-fluid" style="font-family: 'Amiri', serif; background-color: #000000">
             <div class="navbar-header">
-
-                <img src="~/images/louisville.png" />
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-
-                </button>
-                @Html.ActionLink("UofL Vaccine and Travel", "Index", "Home", null, new { @class = "navbar-brand" })
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("UofL Vaccine and Travel", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div id="navbar" class="navbar-collapse collapse">
+                <img src="~/images/LouCards1.jpg" />
                 <ul class="nav navbar-nav navbar-left">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                
-            
-                   
+
+
+
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -56,33 +59,158 @@
         </div>
     </nav>
 
-
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-              
-                <ul class="nav nav-sidebar">
-                    <li>@Html.ActionLink("Vaccines", "Index", "Vaccines")</li>
-                    <li>@Html.ActionLink("Calendar", "Index", "Calendar")</li>
-
-                </ul>
-                <ul class="nav nav-sidebar">
-                    <li>@Html.ActionLink("Grants", "About", "Home")</li>
-                    <li><a href="" class="">Refugees</a></li>
-                </ul>
-                <ul class="nav nav-sidebar">
-                </ul>
-            </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <div class="row placeholder">
-                    @RenderBody()
+            <div class="col-sm-3 col-md-2 sidebar" style="background-color: #CC0000 ; border-color: #000000; font-family: 'Cinzel', serif; font-weight: bold">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <span class="glyphicon glyphicon-plus">
+                                    </span>  Vaccines
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                 
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Inventory", "Index", "Vaccines")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Administer Vaccines", "Index", "Patient_Vaccination")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("CDC Data", "Index", "NDC_Lookup")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Reports", "Index", "Reports")</a>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    <span class="glyphicon glyphicon-calendar">
+                                    </span>  Appointments
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Calendar", "Appointments", "Calendars")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Appointment Requests", "Index", "Calendars")</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span></span>@Html.ActionLink("Patient Logins", "Index", "Account")</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    <span class="glyphicon glyphicon-user">
+                                    </span>  Manage Accounts
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Employees", "Index", "Account")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Patients", "Index", "Account")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Refugees", "Index", "Account")
+                                        </td>
+                                    </tr>
+                                   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    <span class="glyphicon glyphicon-file">
+                                    </span> Manage Grants
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Manage Grants", "Index", "GrantManagerModels")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Grant Data", "Index", "GrantManagerModels")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Grant Files", "Index", "GrantManagerModels")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("Grant Reports", "Index", "GrantManagerModels")
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-    </div>
-</div>
-    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
- 
+
+
+           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <div class="row placeholder">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            </div>
+
 </body>
 </html>

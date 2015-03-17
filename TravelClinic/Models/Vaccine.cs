@@ -1,24 +1,36 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace asp.netmvc5.Models
 {
-    public class Vaccine
+   public class Vaccine
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Vendor_ { get; set; }
-        public decimal Dosage { get; set; }
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public Int64 Barcode_NDC { get; set; }
+        public decimal Dose { get; set; }
         public DateTime Date_Added { get; set; }
         public DateTime Date_Expire { get; set; }
-        public string Barcode { get; set; }
         public decimal Price { get; set; }
+        public bool Administered { get; set; }
+        //NDC relationship
+        public virtual NDC_Lookup NDC_Lookup { get; set; } 
 
-
-
+        
+        
     }
+
+
+
     public class VaccineDBContext : DbContext
     {
         public DbSet<Vaccine> Vaccines { get; set; }
+        public System.Data.Entity.DbSet<asp.netmvc5.Models.NDC_Lookup> NDC_Lookup { get; set; }
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<GrantManagerModel> GrantManagers { get; set; }
+	public DbSet<Patient_Vaccination> Patient_Vaccinations { get; set; }
+        
+
     }
 }
