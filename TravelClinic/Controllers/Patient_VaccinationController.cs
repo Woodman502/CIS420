@@ -7,12 +7,16 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using asp.netmvc5.Models;
+using AspNetRoleBasedSecurity.Models;
+
 
 namespace asp.netmvc5.Controllers
 {
     public class Patient_VaccinationController : Controller
     {
         private VaccineDBContext db = new VaccineDBContext();
+        private ApplicationDbContext appdb = new ApplicationDbContext();
+
 
         // GET: Patient_Vaccination
         public ActionResult Index()
@@ -52,8 +56,11 @@ namespace asp.netmvc5.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         // GET: Patient_Vaccination/Create
+        [Authorize]
         public ActionResult Create()
         {
+            string Username = User.Identity.Name;
+
             ViewBag.VaccineID = new SelectList(db.Vaccines, "Id", "Description");
             return View();
         }
@@ -63,11 +70,13 @@ namespace asp.netmvc5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AdministeredID,Barcode_NDC,VaccineID,Refugee_Num,Patient_Num,Employee_Num,Price_Paid,Site_Administered,Date_Administered")] Patient_Vaccination patient_Vaccination)
+        public ActionResult Create([Bind(Include = "AdministeredID,Barcode_NDC,VaccineID,RefugeeId,Patient_Num,UserName,Price_Paid,Site_Administered,Date_Administered")] Patient_Vaccination patient_Vaccination)
         {
             if (ModelState.IsValid)
             {
                 db.Patient_Vaccinations.Add(patient_Vaccination);
+                LoginViewModel user = new LoginViewModel();
+                patient_Vaccination.UserName = user.UserName;
                 Vaccine vaccine = db.Vaccines.Find(patient_Vaccination.VaccineID);
                 //db.Vaccines.Remove(vaccine);
                 vaccine.Administered = true;
@@ -100,7 +109,7 @@ namespace asp.netmvc5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdministeredID,Barcode_NDC,VaccineID,Refugee_Num,Patient_Num,Employee_Num,Price_Paid,Site_Administered,Date_Administered")] Patient_Vaccination patient_Vaccination)
+        public ActionResult Edit([Bind(Include = "AdministeredID,Barcode_NDC,VaccineID,RefugeeId,Patient_Num,UserName,Price_Paid,Site_Administered,Date_Administered")] Patient_Vaccination patient_Vaccination)
         {
             if (ModelState.IsValid)
             {

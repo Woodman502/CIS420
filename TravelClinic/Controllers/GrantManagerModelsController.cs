@@ -98,6 +98,25 @@ namespace asp.netmvc5.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Grant_Name,Grant_Description,Type")] GrantManagerModel grantManagerModel)
         {
+            //Check if the directory exists and create the directory if it doesn't
+            DirectoryInfo filesDir = new DirectoryInfo(Server.MapPath("~/Files/" + grantManagerModel.Grant_Description));
+            if (!filesDir.Exists)
+                filesDir.Create();
+
+            foreach (string upload in Request.Files)
+            {
+                HttpPostedFileBase uploadreq = Request.Files[upload];
+                if (uploadreq != null && uploadreq.ContentLength == 0) continue;
+                
+                //Upload the files to the directory
+                if (uploadreq != null)
+                {
+                    string filename = Path.GetFileName(uploadreq.FileName);
+                    if (filename != null) uploadreq.SaveAs(Path.Combine(filesDir.FullName, filename));
+
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(grantManagerModel).State = EntityState.Modified;
@@ -130,16 +149,43 @@ namespace asp.netmvc5.Controllers
         public ActionResult DeleteConfirmed(int? id)
         {
             GrantManagerModel grantManagerModel = db.GrantManagers.Find(id);
+
+            //Set the alert message
+            Session["GrantMessage"] = String.Format("Grant {0} ({1}) Deleted!",grantManagerModel.Grant_Name, grantManagerModel.Grant_Description);
+
+            //Remove the folder and it's contents
+            if (Directory.Exists(Server.MapPath("~/Files/" + grantManagerModel.Grant_Description)))
+            {
+                var files = Directory.GetFiles(Server.MapPath("~/Files/" + grantManagerModel.Grant_Description));
+                if (files.ToList().Count > 0)
+                {
+                    foreach (String filename in files.ToList())
+                    {
+                        FileInfo fileinfo = new FileInfo(filename);
+                        if (fileinfo.Exists)
+                        {
+                            fileinfo.Delete();
+                        }
+                    }
+                }
+                Directory.Delete(Server.MapPath("~/Files/" + grantManagerModel.Grant_Description));
+            }
+
             db.GrantManagers.Remove(grantManagerModel);
             db.SaveChanges();
+
+
             return RedirectToAction("Index");
         }
 
         public ActionResult GrantFilesPartial(String GrantDescription)
         {
-            var files = Directory.GetFiles(Server.MapPath("~/Files/" + GrantDescription));
-
-            var uploadedFiles = files.Select(file => new FileInfo(file)).ToList();
+            List<FileInfo> uploadedFiles = new List<FileInfo>();
+            if(Directory.Exists(Server.MapPath("~/Files/" + GrantDescription)))
+            {
+                var files = Directory.GetFiles(Server.MapPath("~/Files/" + GrantDescription));
+                uploadedFiles = files.Select(file => new FileInfo(file)).ToList();
+            }
 
             return PartialView(uploadedFiles);
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using asp.netmvc5.Models;
 
 namespace AspNetRoleBasedSecurity.Models
 {
@@ -16,6 +17,8 @@ namespace AspNetRoleBasedSecurity.Models
 
         [Required]
         public string Email { get; set; }
+
+        //public virtual ICollection<Patient_Vaccination> Patient_Vaccinations { get; set; }
     }
 
 
@@ -63,6 +66,7 @@ namespace AspNetRoleBasedSecurity.Models
                 new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var idResult = um.AddToRole(userId, roleName);
             return idResult.Succeeded;
+            
         }
 
 

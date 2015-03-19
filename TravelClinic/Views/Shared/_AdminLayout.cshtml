@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=3.0">
-    <title>@ViewBag.Title = "_AdminLayout"</title>
+    <title>@ViewBag.Title - Administration</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/dashboard.css")
@@ -152,9 +152,9 @@
                                             @Html.ActionLink("Patients", "Index", "Account")
                                         </td>
                                     </tr>
-                                    <tr>
+                                     <tr>
                                         <td>
-                                            @Html.ActionLink("Refugees", "Index", "Account")
+                                            @Html.ActionLink("Refugees", "Index", "Refugees")
                                         </td>
                                     </tr>
                                    
@@ -196,7 +196,33 @@
                                     </tr>
                                 </table>
                             </div>
+
                         </div>
+                       
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                    <span class="glyphicon glyphicon-file">
+                                    </span>  FAQ
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink("FAQ", "Index", "FAQ")
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>

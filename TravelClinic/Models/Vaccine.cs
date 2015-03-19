@@ -6,6 +6,12 @@ namespace asp.netmvc5.Models
 {
    public class Vaccine
     {
+       //public Vaccine()
+       //{
+       //    this.Refugees = new HashSet<Refugee>();
+       //}
+    
+
         public int Id { get; set; }
         public string Description { get; set; }
         public Int64 Barcode_NDC { get; set; }
@@ -15,8 +21,8 @@ namespace asp.netmvc5.Models
         public decimal Price { get; set; }
         public bool Administered { get; set; }
         //NDC relationship
-        public virtual NDC_Lookup NDC_Lookup { get; set; } 
-
+        public virtual NDC_Lookup NDC_Lookup { get; set; }
+        //public virtual ICollection<Refugee> Refugees { get; set; }
         
         
     }
@@ -29,8 +35,9 @@ namespace asp.netmvc5.Models
         public System.Data.Entity.DbSet<asp.netmvc5.Models.NDC_Lookup> NDC_Lookup { get; set; }
         public DbSet<Calendar> Calendars { get; set; }
         public DbSet<GrantManagerModel> GrantManagers { get; set; }
-	public DbSet<Patient_Vaccination> Patient_Vaccinations { get; set; }
-        
+	    public DbSet<Patient_Vaccination> Patient_Vaccinations { get; set; }
+        public DbSet<Refugee> Refugees { get; set; }
+        public DbSet<FAQ> FAQs { get; set; }
 
     }
 }

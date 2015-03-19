@@ -3,6 +3,31 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('#Barcode_NDC').autocomplete({
+                source: '@Url.Action("GetNDC")',
+                focus: function (event, ui) {
+                    $("#Barcode_NDC").val(ui.item.Barcode_NDC);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#VaccineID").val(ui.item.VaccineID);
+                    return false;
+                },
+                _resizeMenu: function () {
+                    this.menu.element.outerWidth(500);
+                }
+            })
+                .autocomplete("instance")._renderItem = function (ul, item) {
+                    return $("<li>")
+                      .append("<a>" + item.VaccineID + "<br>" + item.Barcode_NDC + "<br>" + item.Description + "</a>")
+                      .appendTo(ul);
+                };
+        });
+    </script>
 }
 
 <h2>Edit</h2>
@@ -11,26 +36,33 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    @Html.HiddenFor(model => model.AdministeredID)
+
+
     <div class="form-horizontal">
         <h4>Patient_Vaccination</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.AdministeredID)
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Barcode_NDC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Barcode_NDC)
+                @Html.ValidationMessageFor(model => model.Barcode_NDC)
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.VaccineID, "VaccineID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("VaccineID", String.Empty)
+                @Html.EditorFor(model => model.VaccineID)
                 @Html.ValidationMessageFor(model => model.VaccineID)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Refugee_Num, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RefugeeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Refugee_Num)
-                @Html.ValidationMessageFor(model => model.Refugee_Num)
+                @Html.EditorFor(model => model.RefugeeId)
+                @Html.ValidationMessageFor(model => model.RefugeeId)
             </div>
         </div>
 
@@ -43,10 +75,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee_Num, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee_Num)
-                @Html.ValidationMessageFor(model => model.Employee_Num)
+                @Html.EditorFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
             </div>
         </div>
 

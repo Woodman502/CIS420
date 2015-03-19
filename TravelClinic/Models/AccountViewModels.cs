@@ -31,6 +31,7 @@ namespace AspNetRoleBasedSecurity.Models
     public class LoginViewModel
     {
         [Required]
+        [Key]
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
@@ -90,7 +91,7 @@ namespace AspNetRoleBasedSecurity.Models
         }
     }
 
-
+   
     public class EditUserViewModel
     {
         public EditUserViewModel() { }
@@ -105,6 +106,7 @@ namespace AspNetRoleBasedSecurity.Models
         }
 
         [Required]
+        [Key]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 
@@ -152,9 +154,8 @@ namespace AspNetRoleBasedSecurity.Models
             // which the current user is a member:
             foreach (var userRole in user.Roles)
             {
-                var checkUserRole =
-                    this.Roles.Find(r => r.RoleName == userRole.RoleId);
-                checkUserRole.Selected = true;
+                var checkUserRole = this.Roles.Find(r => r.RoleId == userRole.RoleId);
+                 checkUserRole.Selected = true;
             }
         }
 
@@ -170,12 +171,14 @@ namespace AspNetRoleBasedSecurity.Models
         public SelectRoleEditorViewModel() { }
         public SelectRoleEditorViewModel(IdentityRole role)
         {
+            this.RoleId = role.Id;
             this.RoleName = role.Name;
         }
 
         public bool Selected { get; set; }
 
         [Required]
+        public string RoleId { get; set; }
         public string RoleName { get; set; }
     }
 }

@@ -8,39 +8,56 @@
 @{<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 
         <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            $('#Barcode_NDC').autocomplete({
-                source: '@Url.Action("GetNDC")',
-                focus: function( event, ui ) {
-                    $("#Barcode_NDC").val(ui.item.Barcode_NDC);
-                    return false;
-                },
-                select: function( event, ui ) {
-                    $("#VaccineID").val(ui.item.VaccineID);
-                    return false;
-                },
-                _resizeMenu: function() {
-                    this.menu.element.outerWidth( 500 );
-                }
-            })
-                .autocomplete("instance")._renderItem = function (ul, item) {
-                    return $("<li>")
-                      .append("<a>" + item.VaccineID + "<br>" + item.Barcode_NDC + "<br>" + item.Description + "</a>")
-                      .appendTo(ul);
-                };
-        });
+
+        $('#Barcode_NDC').autocomplete({
+            source: '@Url.Action("GetNDC")',
+            focus: function( event, ui ) {
+                $("#Barcode_NDC").val(ui.item.Barcode_NDC);
+                return false;
+            },
+            select: function( event, ui ) {
+                $("#VaccineID").val(ui.item.VaccineID);
+                return false;
+            },
+            _resizeMenu: function() {
+                this.menu.element.outerWidth( 500 );
+            }
+        })
+            .autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                  .append("<a>" + item.VaccineID + "<br>" + item.Barcode_NDC + "<br>" + item.Description + "</a>")
+                  .appendTo(ul);
+            };
+    });
         @*$('#Description').autocomplete({
             source: '@Url.Action("GetDescription")',
             _resizeMenu: function () {
                 this.menu.element.outerWidth(500);
             }
         });*@
+            $(function () {
+            var d = new Date();
 
-           $(function() {
-              $( "#Date_Administered" ).datepicker();
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+
+            var output = d.getFullYear() + '/' +
+                (month < 10 ? '0' : '') + month + '/' +
+                (day < 10 ? '0' : '') + day;
+            });
+
+            $(function () {
+            
+                var myDate = new Date();
+                var prettyDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' +
+                        myDate.getFullYear() + " " + myDate.getHours() + ":" + myDate.getMinutes();
+                $("#Date_Administered").datepicker({ defaultDate: new Date() });
+                $("#Date_Administered").val(prettyDate);
+                $("#UserName").val('@User.Identity.Name');
            });
-           
+
 
         </script>
     }
@@ -79,10 +96,10 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Refugee_Num, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RefugeeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Refugee_Num)
-                @Html.ValidationMessageFor(model => model.Refugee_Num)
+                @Html.EditorFor(model => model.RefugeeId)
+                @Html.ValidationMessageFor(model => model.RefugeeId)
             </div>
         </div>
 
@@ -95,10 +112,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Employee_Num, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee_Num)
-                @Html.ValidationMessageFor(model => model.Employee_Num)
+                @Html.EditorFor(model => model.User.UserName)
+                @Html.ValidationMessageFor(model => model.User.UserName)
             </div>
         </div>
 

@@ -197,28 +197,41 @@
     </Compile>
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CalendarsController.cs" />
-    <Compile Include="Controllers\FileManagerController.cs" />
     <Compile Include="Controllers\GrantManagerModelsController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NDC_LookupController.cs" />
     <Compile Include="Controllers\Patient_VaccinationController.cs" />
+    <Compile Include="Controllers\RefugeesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\VaccinesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503020537273_InitialCreate.cs" />
-    <Compile Include="Migrations\201503020537273_InitialCreate.Designer.cs">
-      <DependentUpon>201503020537273_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201503170537050_InitialRef.cs" />
+    <Compile Include="Migrations\201503170537050_InitialRef.Designer.cs">
+      <DependentUpon>201503170537050_InitialRef.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503130551274_initialdbapp.cs" />
-    <Compile Include="Migrations\201503130551274_initialdbapp.Designer.cs">
-      <DependentUpon>201503130551274_initialdbapp.cs</DependentUpon>
+    <Compile Include="Migrations\201503172301318_entityupdate.cs" />
+    <Compile Include="Migrations\201503172301318_entityupdate.Designer.cs">
+      <DependentUpon>201503172301318_entityupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503180217576_entityupdate2.cs" />
+    <Compile Include="Migrations\201503180217576_entityupdate2.Designer.cs">
+      <DependentUpon>201503180217576_entityupdate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503180358363_entityupdate9.cs" />
+    <Compile Include="Migrations\201503180358363_entityupdate9.Designer.cs">
+      <DependentUpon>201503180358363_entityupdate9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503181943289_appdbb.cs" />
+    <Compile Include="Migrations\201503181943289_appdbb.Designer.cs">
+      <DependentUpon>201503181943289_appdbb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Calendar.cs" />
+    <Compile Include="Models\FAQ.cs" />
     <Compile Include="Models\GrantManagerModel.cs" />
     <Compile Include="Models\Helpers\MimeTypes.cs" />
     <Compile Include="Models\IdentityModels.cs">
@@ -226,7 +239,7 @@
     </Compile>
     <Compile Include="Models\NDC_Lookup.cs" />
     <Compile Include="Models\Patient_Vaccination.cs" />
-    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Refugee.cs" />
     <Compile Include="Models\Sales.cs" />
     <Compile Include="Models\Vaccine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,10 +247,12 @@
     <Compile Include="Models\VaccineNDCGroup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\asp.netmvc5.dll" />
     <Content Include="bin\ElFinder.Net.dll" />
     <Content Include="bin\ElFinder.Net.pdb" />
     <Content Include="bin\ElFinder.Sample.dll" />
     <Content Include="bin\ElFinder.Sample.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\Newtonsoft.Json.xml">
       <SubType>Designer</SubType>
@@ -286,11 +301,6 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Files\eye.jpg" />
-    <Content Include="Files\hello_world.txt" />
-    <Content Include="Files\vinni_puh_i_pcheli_003.jpg" />
-    <Content Include="Files\¡«óán »á»¬á\vinni_puh_i_pcheli_003 - Copy.jpg" />
-    <Content Include="Files\ß«íá¬á.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -306,18 +316,26 @@
     <Content Include="images\sort_both.png" />
     <Content Include="images\sort_desc.png" />
     <Content Include="images\sort_desc_disabled.png" />
-    <Content Include="packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll" />
-    <Content Include="packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="packages\bootstrap.3.3.2\content\Content\bootstrap-theme.css" />
+    <Content Include="packages\bootstrap.3.3.2\content\Content\bootstrap-theme.min.css" />
+    <Content Include="packages\bootstrap.3.3.2\content\Content\bootstrap.css" />
+    <Content Include="packages\bootstrap.3.3.2\content\Content\bootstrap.min.css" />
+    <Content Include="packages\bootstrap.3.3.2\content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="packages\bootstrap.3.3.2\content\Scripts\bootstrap.js" />
+    <Content Include="packages\bootstrap.3.3.2\content\Scripts\bootstrap.min.js" />
+    <Content Include="packages\bootstrap.3.3.2\content\Scripts\npm.js" />
     <Content Include="packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll" />
-    <Content Include="packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.xml" />
-    <Content Include="packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll" />
-    <Content Include="packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll" />
     <Content Include="packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.xml" />
     <Content Include="packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll" />
     <Content Include="packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.xml" />
     <Content Include="packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll" />
-    <Content Include="packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.xml" />
+    <Content Include="packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll" />
     <Content Include="packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\system.web.optimization.xml" />
     <Content Include="packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll" />
@@ -339,8 +357,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include=".bin\node.cmd" />
-    <Content Include="packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\Microsoft.AspNet.Identity.EntityFramework.2.2.0.nupkg" />
-    <Content Include="packages\Microsoft.AspNet.Identity.Core.2.2.0\Microsoft.AspNet.Identity.Core.2.2.0.nupkg" />
     <Content Include="packages\Microsoft.AspNet.Razor.3.2.3\Microsoft.AspNet.Razor.3.2.3.nupkg" />
     <Content Include="packages\Microsoft.AspNet.Mvc.5.2.3\Content\Web.config.install.xdt" />
     <Content Include="packages\Microsoft.AspNet.Mvc.5.2.3\Content\Web.config.uninstall.xdt" />
@@ -352,6 +368,13 @@
     <Content Include="packages\Owin.1.0\Owin.1.0.nupkg" />
     <Content Include="packages\Microsoft.AspNet.Identity.Owin.1.0.0\Microsoft.AspNet.Identity.Owin.1.0.0.nupkg" />
     <Content Include="packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\Microsoft.AspNet.Identity.EntityFramework.1.0.0.nupkg" />
+    <Content Include="packages\bootstrap.3.3.2\bootstrap.3.3.2.nupkg" />
+    <Content Include="packages\bootstrap.3.3.2\content\Content\bootstrap-theme.css.map" />
+    <Content Include="packages\bootstrap.3.3.2\content\Content\bootstrap.css.map" />
+    <Content Include="packages\bootstrap.3.3.2\content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages\bootstrap.3.3.2\content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="packages\bootstrap.3.3.2\content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="packages\bootstrap.3.3.2\content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\cis420 - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\cis420 - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\cis420 - FTP %284%29.pubxml" />
@@ -370,6 +393,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
@@ -422,7 +446,6 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
-    <Content Include="Views\FileManager\index.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
@@ -452,6 +475,11 @@
     <Content Include="Views\GrantManagerModels\Index.cshtml" />
     <Content Include="TravelClinic.idc" />
     <Content Include="TravelClinic.v11.suo" />
+    <Content Include="Views\FAQs\Create.cshtml" />
+    <Content Include="Views\FAQs\Delete.cshtml" />
+    <Content Include="Views\FAQs\Details.cshtml" />
+    <Content Include="Views\FAQs\Edit.cshtml" />
+    <Content Include="Views\FAQs\Index.cshtml" />
     <None Include="Views\GrantManagerModels\GrantFilesPartial.cshtml" />
     <Content Include="Views\Patient_Vaccination\Create.cshtml" />
     <Content Include="Views\Patient_Vaccination\Delete.cshtml" />
@@ -461,12 +489,15 @@
     <Content Include="Views\Vaccines\Administered.cshtml" />
     <Content Include="Views\Vaccines\TotalSales.cshtml" />
     <Content Include="Views\Reports\VaccineSalesCount.cshtml" />
+    <Content Include="Views\Refugees\Create.cshtml" />
+    <Content Include="Views\Refugees\Delete.cshtml" />
+    <Content Include="Views\Refugees\Details.cshtml" />
+    <Content Include="Views\Refugees\Edit.cshtml" />
+    <Content Include="Views\Refugees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Files\.tmb_Files\" />
-    <Folder Include="Files\.tmb_Program Files\" />
-    <Folder Include="obj\" />
+    <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -476,11 +507,20 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503020537273_InitialCreate.resx">
-      <DependentUpon>201503020537273_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503170537050_InitialRef.resx">
+      <DependentUpon>201503170537050_InitialRef.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503130551274_initialdbapp.resx">
-      <DependentUpon>201503130551274_initialdbapp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503172301318_entityupdate.resx">
+      <DependentUpon>201503172301318_entityupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503180217576_entityupdate2.resx">
+      <DependentUpon>201503180217576_entityupdate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503180358363_entityupdate9.resx">
+      <DependentUpon>201503180358363_entityupdate9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503181943289_appdbb.resx">
+      <DependentUpon>201503181943289_appdbb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
