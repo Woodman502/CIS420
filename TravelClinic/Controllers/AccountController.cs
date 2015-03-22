@@ -10,7 +10,6 @@ using AspNetRoleBasedSecurity.Models;
 
 namespace AspNetRoleBasedSecurity.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         public AccountController()
@@ -28,7 +27,6 @@ namespace AspNetRoleBasedSecurity.Controllers
         public UserManager<ApplicationUser> UserManager { get; private set; }
 
 
-        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -37,7 +35,6 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
@@ -59,8 +56,7 @@ namespace AspNetRoleBasedSecurity.Controllers
             return View(model);
         }
 
-
-        [AllowAnonymous]
+        [Authorize(Roles="Admin")]
         public ActionResult Register()
         {
             return View();
@@ -68,7 +64,7 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -88,7 +84,6 @@ namespace AspNetRoleBasedSecurity.Controllers
         }
 
 
-        [AllowAnonymous]
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -105,7 +100,6 @@ namespace AspNetRoleBasedSecurity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
         {
             bool hasPassword = HasPassword();
@@ -173,8 +167,7 @@ namespace AspNetRoleBasedSecurity.Controllers
             base.Dispose(disposing);
         }
 
-
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Researcher")]
         public ActionResult Index()
         {
             var Db = new ApplicationDbContext();
@@ -188,8 +181,7 @@ namespace AspNetRoleBasedSecurity.Controllers
             return View(model);
         }
 
-
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult Edit(string id, ManageMessageId? Message = null)
         {
             var Db = new ApplicationDbContext();
@@ -201,7 +193,7 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EditUserViewModel model)
         {
@@ -221,8 +213,7 @@ namespace AspNetRoleBasedSecurity.Controllers
             return View(model);
         }
 
-
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult Delete(string id = null)
         {
             var Db = new ApplicationDbContext();
@@ -237,8 +228,8 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             var Db = new ApplicationDbContext();
@@ -248,8 +239,7 @@ namespace AspNetRoleBasedSecurity.Controllers
             return RedirectToAction("Index");
         }
 
-
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult UserRoles(string id)
         {
             var Db = new ApplicationDbContext();
@@ -260,7 +250,7 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         [ValidateAntiForgeryToken]
         public ActionResult UserRoles(SelectUserRolesViewModel model)
         {

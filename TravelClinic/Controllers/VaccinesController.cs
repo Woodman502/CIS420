@@ -10,6 +10,7 @@ using asp.netmvc5.Models;
 
 namespace asp.netmvc5.Controllers
 {
+    [Authorize(Roles = "Admin, Executive, CanEdit, Researcher, Program Staff, Medical Staff")]
     public class VaccinesController : Controller
     {
         private VaccineDBContext db = new VaccineDBContext();
@@ -40,6 +41,7 @@ namespace asp.netmvc5.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         // GET: Vaccines/Details/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Researcher, Program Staff, Medical Staff")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -55,6 +57,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Vaccines/Create
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Create()
         {
             ViewBag.Barcode_NDC = new SelectList(db.NDC_Lookup, "Barcode_NDC", "Barcode_NDC");
@@ -65,6 +68,7 @@ namespace asp.netmvc5.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Description,Barcode_NDC,Dose,Date_Added,Date_Expire,Price")] Vaccine vaccine)
         {
@@ -80,6 +84,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Vaccines/Edit/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +104,7 @@ namespace asp.netmvc5.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Description,Barcode_NDC,Dose,Date_Added,Date_Expire,Price")] Vaccine vaccine)
         {
@@ -113,6 +119,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Vaccines/Delete/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,6 +136,7 @@ namespace asp.netmvc5.Controllers
 
         // POST: Vaccines/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

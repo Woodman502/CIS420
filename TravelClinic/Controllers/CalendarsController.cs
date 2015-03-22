@@ -10,6 +10,7 @@ using asp.netmvc5.Models;
 
 namespace asp.netmvc5.Controllers
 {
+    [Authorize(Roles = "Admin, Executive, CanEdit, Researcher, Program Staff")]
     public class CalendarsController : Controller
     {
         private VaccineDBContext db = new VaccineDBContext();
@@ -24,6 +25,7 @@ namespace asp.netmvc5.Controllers
             return View();
         }
         // GET: Calendars/Details/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Researcher, Program Staff")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Calendars/Create
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Create()
         {
             return View();
@@ -48,6 +51,7 @@ namespace asp.netmvc5.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Email,RequestDate,NewUser")] Calendar calendar)
         {
@@ -62,6 +66,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Calendars/Edit/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +85,7 @@ namespace asp.netmvc5.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Email,RequestDate,NewUser")] Calendar calendar)
         {
@@ -93,6 +99,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Calendars/Delete/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,6 +116,7 @@ namespace asp.netmvc5.Controllers
 
         // POST: Calendars/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

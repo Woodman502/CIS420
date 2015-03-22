@@ -36,6 +36,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: NDC_Lookup/Create
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Create()
         {
             return View();
@@ -45,6 +46,7 @@ namespace asp.netmvc5.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Barcode_NDC,QRCode,Route,Brand_Name,Code_CVX,Description_CVX,Description_Generic,Package_Name,Package_Type,Date_Updated")] NDC_Lookup nDC_Lookup)
         {
@@ -59,6 +61,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: NDC_Lookup/Edit/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -77,6 +80,7 @@ namespace asp.netmvc5.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Barcode_NDC,QRCode,Route,Brand_Name,Code_CVX,Description_CVX,Description_Generic,Package_Name,Package_Type,Date_Updated")] NDC_Lookup nDC_Lookup)
         {
@@ -90,6 +94,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: NDC_Lookup/Delete/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -106,6 +111,7 @@ namespace asp.netmvc5.Controllers
 
         // POST: NDC_Lookup/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {

@@ -16,7 +16,7 @@ namespace asp.netmvc5.Controllers
         }
 
       
-
+        [Authorize(Roles= "OnlineRegistration")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -27,6 +27,38 @@ namespace asp.netmvc5.Controllers
         {
             ViewBag.Message = "Vaccine Inventory page.";
 
+            return View();
+        }
+        public ActionResult OurPartners()
+        {
+            return View();
+        }
+        public ActionResult CivilSurgeon()
+        {
+            return View();
+        }
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+        public ActionResult Immunization()
+        {
+            return View();
+        }
+        public ActionResult Services()
+        {
+            return View();
+        }
+        public ActionResult OurResearch()
+        {
+            return View();
+        }
+        public ActionResult Home()
+        {
             return View();
         }
     }
