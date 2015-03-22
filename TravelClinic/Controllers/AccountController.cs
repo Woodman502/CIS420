@@ -60,7 +60,7 @@ namespace AspNetRoleBasedSecurity.Controllers
         }
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             return View();
@@ -68,7 +68,7 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -174,7 +174,7 @@ namespace AspNetRoleBasedSecurity.Controllers
         }
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Researcher")]
         public ActionResult Index()
         {
             var Db = new ApplicationDbContext();
@@ -189,7 +189,7 @@ namespace AspNetRoleBasedSecurity.Controllers
         }
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult Edit(string id, ManageMessageId? Message = null)
         {
             var Db = new ApplicationDbContext();
@@ -201,7 +201,7 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EditUserViewModel model)
         {
@@ -222,7 +222,7 @@ namespace AspNetRoleBasedSecurity.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult Delete(string id = null)
         {
             var Db = new ApplicationDbContext();
@@ -238,7 +238,7 @@ namespace AspNetRoleBasedSecurity.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult DeleteConfirmed(string id)
         {
             var Db = new ApplicationDbContext();
@@ -249,7 +249,7 @@ namespace AspNetRoleBasedSecurity.Controllers
         }
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult UserRoles(string id)
         {
             var Db = new ApplicationDbContext();
@@ -260,7 +260,7 @@ namespace AspNetRoleBasedSecurity.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         [ValidateAntiForgeryToken]
         public ActionResult UserRoles(SelectUserRolesViewModel model)
         {

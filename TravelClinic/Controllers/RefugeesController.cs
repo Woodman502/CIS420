@@ -10,6 +10,7 @@ using asp.netmvc5.Models;
 
 namespace asp.netmvc5.Controllers
 {
+    [Authorize(Roles = "Admin, Executive, CanEdit, Researcher, Program Staff, Medical Staff")]
     public class RefugeesController : Controller
     {
         private VaccineDBContext db = new VaccineDBContext();
@@ -21,6 +22,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Refugees/Details/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Researcher, Program Staff, Medical Staff")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Refugees/Create
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace asp.netmvc5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Create([Bind(Include = "RefugeeId,Patient_BarCode,Date_Added,FirstName,LastName,Laungage,OriginCountry,Gender")] Refugee refugee)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Refugees/Edit/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace asp.netmvc5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Edit([Bind(Include = "RefugeeId,Patient_BarCode,Date_Added,FirstName,LastName,Laungage,OriginCountry,Gender")] Refugee refugee)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Refugees/Delete/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +113,7 @@ namespace asp.netmvc5.Controllers
 
         // POST: Refugees/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

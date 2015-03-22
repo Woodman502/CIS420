@@ -12,6 +12,7 @@ using AspNetRoleBasedSecurity.Models;
 
 namespace asp.netmvc5.Controllers
 {
+   [Authorize(Roles = "Admin, Executive, CanEdit, Researcher, Program Staff, Medical Staff")]
     public class Patient_VaccinationController : Controller
     {
         private VaccineDBContext db = new VaccineDBContext();
@@ -19,6 +20,7 @@ namespace asp.netmvc5.Controllers
 
 
         // GET: Patient_Vaccination
+
         public ActionResult Index()
         {
             var patient_Vaccinations = db.Patient_Vaccinations.Include(p => p.Vaccine);
@@ -56,7 +58,7 @@ namespace asp.netmvc5.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         // GET: Patient_Vaccination/Create
-        [Authorize]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff, Medical Staff")]
         public ActionResult Create()
         {
             string Username = User.Identity.Name;
@@ -70,6 +72,7 @@ namespace asp.netmvc5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff, Medical Staff")]
         public ActionResult Create([Bind(Include = "AdministeredID,Barcode_NDC,VaccineID,RefugeeId,Patient_Num,UserName,Price_Paid,Site_Administered,Date_Administered")] Patient_Vaccination patient_Vaccination)
         {
             if (ModelState.IsValid)
@@ -89,6 +92,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Patient_Vaccination/Edit/5
+       [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff, Medical Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -109,6 +113,7 @@ namespace asp.netmvc5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff, Medical Staff")]
         public ActionResult Edit([Bind(Include = "AdministeredID,Barcode_NDC,VaccineID,RefugeeId,Patient_Num,UserName,Price_Paid,Site_Administered,Date_Administered")] Patient_Vaccination patient_Vaccination)
         {
             if (ModelState.IsValid)
@@ -122,6 +127,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: Patient_Vaccination/Delete/5
+       [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -139,6 +145,7 @@ namespace asp.netmvc5.Controllers
         // POST: Patient_Vaccination/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Executive, CanEdit, Program Staff, Medical Staff")]
         public ActionResult DeleteConfirmed(int id)
         {
             Patient_Vaccination patient_Vaccination = db.Patient_Vaccinations.Find(id);

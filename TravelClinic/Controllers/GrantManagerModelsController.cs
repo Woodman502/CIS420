@@ -12,6 +12,7 @@ using asp.netmvc5.Models.Helpers;
 
 namespace asp.netmvc5.Controllers
 {
+    [Authorize(Roles = "Admin, Executive, CanEdit, Researcher")]
     public class GrantManagerModelsController : Controller
     {
         private VaccineDBContext db = new VaccineDBContext();
@@ -24,6 +25,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: GrantManagerModels/Details/5
+        [Authorize(Roles = "Admin, Executive, CanEdit, Researcher")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,6 +43,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: GrantManagerModels/Create
+       [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult Create()
         {
             return View();
@@ -77,6 +80,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: GrantManagerModels/Edit/5
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +99,7 @@ namespace asp.netmvc5.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Grant_Name,Grant_Description,Type")] GrantManagerModel grantManagerModel)
         {
@@ -127,6 +132,7 @@ namespace asp.netmvc5.Controllers
         }
 
         // GET: GrantManagerModels/Delete/5
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -145,6 +151,7 @@ namespace asp.netmvc5.Controllers
 
         // POST: GrantManagerModels/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
@@ -177,7 +184,7 @@ namespace asp.netmvc5.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult GrantFilesPartial(String GrantDescription)
         {
             List<FileInfo> uploadedFiles = new List<FileInfo>();
@@ -208,7 +215,7 @@ namespace asp.netmvc5.Controllers
 
             return RedirectToAction("Delete", new{id});
         }
-        
+        [Authorize(Roles = "Admin, Executive, CanEdit")]
         public ActionResult FileDownload(int id, String FileName)
         {
             GrantManagerModel grantManagerModel = db.GrantManagers.Find(id);

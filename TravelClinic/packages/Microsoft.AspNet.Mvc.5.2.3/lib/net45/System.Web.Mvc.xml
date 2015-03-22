@@ -330,7 +330,8 @@
       <param name="request">The HTTP request.</param>
       <exception cref="T:System.ArgumentNullException">The <paramref name="request" /> parameter is null (Nothing in Visual Basic).</exception>
     </member>
-    <member name="T:System.Web.Mvc.AllowAnonymousAttribute">
+    <member name="T:System.Web.Mvc.Allow
+            ymousAttribute">
       <summary>Represents an attribute that marks controllers and actions to skip the <see cref="T:System.Web.Mvc.AuthorizeAttribute" /> during authorization.</summary>
     </member>
     <member name="M:System.Web.Mvc.AllowAnonymousAttribute.#ctor">
