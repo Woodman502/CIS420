@@ -737,3 +737,9 @@ C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.Mig
 C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.Migrations.entityupdate2.resources
 C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.Migrations.entityupdate9.resources
 C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.Migrations.appdbb.resources
+C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.Migrations.twod.resources
+C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\bin\Gma.QrCodeNet.Encoding.dll
+C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\bin\Gma.QrCodeNet.Encoding.pdb
+C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\bin\Gma.QrCodeNet.Encoding.xml
+C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.Migrations.norefbar.resources
+C:\Users\Nicholas\Documents\GitHub\CIS420\TravelClinic\obj\Debug\asp.netmvc5.Migrations.norefbar2.resources

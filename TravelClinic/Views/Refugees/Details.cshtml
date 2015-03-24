@@ -12,13 +12,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Patient_BarCode)
+            @Html.DisplayNameFor(model => model.RefugeeId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Patient_BarCode)
+            @Html.DisplayFor(model => model.RefugeeId)
         </dd>
+        <dt>
+            <label>2D Barcode</label>
+        </dt>
 
+        <dd>
+            <img src="/Refugees/BarcodeImage?barcodeText=@Html.DisplayTextFor(model => model.RefugeeId)" />
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Date_Added)
         </dt>
